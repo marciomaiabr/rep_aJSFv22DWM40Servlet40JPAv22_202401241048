@@ -25,7 +25,7 @@ public class Teste01MB {
 	}
 
 	public long getVersion() {
-		return 202401241023l;
+		return 202401241130l;
 	}
 
 	public void testDB() {
