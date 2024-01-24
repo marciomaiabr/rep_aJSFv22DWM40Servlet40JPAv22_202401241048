@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>gJSFv22DWM40Servlet40JPAv22_202401241048</groupId>
+  <artifactId>aJSFv22DWM40Servlet40JPAv22_202401241048</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>nJSFv22DWM40Servlet40JPAv22_202401241048</name>
+  <description>dJSFv22DWM40Servlet40JPAv22_202401241048</description>
+
+  <dependencies>
+
+<!-- dependências do Dynamic Web Module-->
+  	<dependency>
+  		<groupId>javax.servlet</groupId>
+  		<artifactId>javax.servlet-api</artifactId>
+  		<version>4.0.1</version>
+  		<scope>provided</scope>
+  	</dependency>
+
+<!-- dependências do JSF 2.0 -->
+  	<dependency>
+  		<groupId>com.sun.faces</groupId>
+  		<artifactId>jsf-api</artifactId>
+  		<version>2.2.12</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.sun.faces</groupId>
+  		<artifactId>jsf-impl</artifactId>
+  		<version>2.2.12</version>
+  	</dependency>
+	<dependency>
+  		<groupId>javax.annotation</groupId>
+	  	<artifactId>javax.annotation-api</artifactId>
+	  	<version>1.3.2</version>
+	</dependency>
+
+
+
+<!-- dependências do jpa 2.2 -->
+	<dependency>
+	    <groupId>javax.persistence</groupId>
+	    <artifactId>javax.persistence-api</artifactId>
+	    <version>2.2</version>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-core</artifactId>
+		<version>5.6.15.Final</version>
+	</dependency>
+	<dependency>
+		<groupId>com.microsoft.sqlserver</groupId>
+		<artifactId>mssql-jdbc</artifactId>
+		<version>12.2.0.jre11</version>
+	</dependency>
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>8.0.33</version>
+	</dependency>
+  </dependencies>
+
+</project>
