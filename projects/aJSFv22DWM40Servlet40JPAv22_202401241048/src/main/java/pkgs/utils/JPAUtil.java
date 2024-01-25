@@ -38,6 +38,8 @@ public class JPAUtil {
 			map.put("hibernate.format_sql", "true");
 			map.put("use_sql_comments", "true");
 			map.put("hibernate.hbm2ddl.auto", "create");
+			//chama o "sql-load-script-source" somente quando "hibernate.hbm2ddl.auto" é "create"
+			map.put("javax.persistence.sql-load-script-source", "META-INF/sqls/InsertEstados.sql");
 			map.put("hibernate.archive.autodetection", "class");
 			emf = Persistence.createEntityManagerFactory("myPU", map);
 		}
