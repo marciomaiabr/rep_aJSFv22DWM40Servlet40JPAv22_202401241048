@@ -1,5 +1,6 @@
 package pkgs.utils;
 
+import javax.faces.application.ProjectStage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,12 @@ public class JSFUtil {
 		HttpServletRequest httpServletRequest = (HttpServletRequest) externalContext.getRequest();
 
 		return httpServletRequest;
+	}
+
+	public static ProjectStage getProjectStage() {
+		ProjectStage projectStage = FacesContext.getCurrentInstance().getApplication().getProjectStage();
+
+		return projectStage;
 	}
 
 }
