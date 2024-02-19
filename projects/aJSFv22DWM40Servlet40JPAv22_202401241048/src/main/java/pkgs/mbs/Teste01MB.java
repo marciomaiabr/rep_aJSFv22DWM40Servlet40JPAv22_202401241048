@@ -1,12 +1,14 @@
 package pkgs.mbs;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
-import javax.faces.event.ActionEvent;
-import javax.faces.event.AjaxBehaviorEvent;
+import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 
+import pkgs.models.Estado;
 import pkgs.utils.JSFUtil;
 
 @ManagedBean
@@ -28,70 +30,71 @@ public class Teste01MB {
 		souts();
 	}
 
-	private String texto01;
-	private String texto02;
-	private String texto03;
-	private String texto04;
+	private List<Estado> estados;
 
-	public String getTexto01() {
-		return texto01;
+	public List<Estado> getEstados() {
+		System.out.println("Teste01MB.getEstados()");
+		return estados;
 	}
 
-	public void setTexto01(String texto01) {
-		this.texto01 = texto01;
+	public void setEstados(List<Estado> estados) {
+		System.out.println("Teste01MB.setEstados()");
+		this.estados = estados;
 	}
 
-	public String getTexto02() {
-		return texto02;
+	private Estado estado;
+
+	public Estado getEstado() {
+		return estado;
 	}
 
-	public void setTexto02(String texto02) {
-		this.texto02 = texto02;
-	}
-
-	public String getTexto03() {
-		return texto03;
-	}
-
-	public void setTexto03(String texto03) {
-		this.texto03 = texto03;
-	}
-
-	public String getTexto04() {
-		return texto04;
-	}
-
-	public void setTexto04(String texto04) {
-		this.texto04 = texto04;
+	public void setEstado(Estado estado) {
+		System.out.println("Teste01MB.setEstado()");
+		System.out.println("     " + "[estado=" + estado + "][this.estado=" + this.estado + "]");
+		this.estado = estado;
 	}
 
 	private void souts() {
-		System.out.println("     " + "[this.texto01=" + this.texto01 + "]");
-		System.out.println("     " + "[this.texto02=" + this.texto02 + "]");
-		System.out.println("     " + "[this.texto03=" + this.texto03 + "]");
-		System.out.println("     " + "[this.texto04=" + this.texto04 + "]");
+		System.out.println("     " + "[this.estado=" + this.estado + "]");
+		System.out.println("     " + "[this.estados=" + this.estados + "]");
 	}
 
 	public void methodViewAction() {
 		System.out.println("Teste01MB.methodViewAction()");
 
-		souts();
-	}
-
-	public void commandButtonTexto01Click() {
-		System.out.println("Teste01MB.commandButtonTexto01Click()");
+		listarEstados();
 
 		souts();
 	}
 
-	public void commandButtonTexto01AjaxListener() {
-		System.out.println("Teste01MB.commandButtonTexto01AjaxListener()");
+	public void listarEstados() {
+		System.out.println("Teste01MB.listarEstados()");
+
+		souts();
+
+		HttpServletRequest request = JSFUtil.getRequest();
+
+		EntityManager em = (EntityManager) request.getAttribute("entityManager");
+
+		this.estados = em.createQuery("from Estado", Estado.class).getResultList();
+	}
+
+	public void commandButtonEstadoClick() {
+		System.out.println("Teste01MB.commandButtonEstadoClick()");
 
 		souts();
 	}
 
-	public void commandButtonTexto01ActionListener() {
-		System.out.println("Teste01MB.commandButtonTexto01ActionListener()");
+	public void commandButtonEstadoAjaxListener() {
+		System.out.println("Teste01MB.commandButtonEstadoAjaxListener()");
+
+		listarEstados();
+
+		souts();
+	}
+
+	public void commandButtonEstadoActionListener() {
+		System.out.println("Teste01MB.commandButtonEstadoActionListener()");
 
 		souts();
 	}

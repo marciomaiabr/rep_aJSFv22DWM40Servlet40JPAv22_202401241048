@@ -19,10 +19,8 @@ public class Exe01 {
 	public void execute() {
 		// 
 		criaEntidades();
-		// 
-		insertEmpresa();
-		// 
-		listEmpresa();
+		// insertEmpresa();
+		// listEmpresa();
 	}
 
 	private void criaEntidades() {

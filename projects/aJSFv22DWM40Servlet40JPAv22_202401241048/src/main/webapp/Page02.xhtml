@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>JSF 2.2</title>
+	</h:head>
+	<h:body>
+		<h:form id="frm1">
+			<h1>Bem vindo...</h1>
+			<hr />
+			<h:outputText value="MBVersion: #{teste01MB.version}" />
+			<br />
+			<h:outputText value="XHTMLVersion: 202402170923" />
+			<br />
+			<hr />
+			<br />
+			<h:outputText id="outputTextCampoText1" value="[teste01MB.campoText1=#{teste01MB.campoText1}]" />
+			<br />
+			<h:outputText id="outputTextCampoText2" value="[teste01MB.campoText2=#{teste01MB.campoText2}]" />
+			<br />
+			<h:outputText id="outputTextCampoText3" value="[teste01MB.campoText3=#{teste01MB.campoText3}]" />
+			<br />
+			<h:outputText id="outputTextIntegerIdEstado" value="[teste01MB.integerIdEstado=#{teste01MB.integerIdEstado}]" />
+			<br />
+			<h:outputText id="outputTextIntegerIdCidade" value="[teste01MB.integerIdCidade=#{teste01MB.integerIdCidade}]" />
+			<br />
+			<h:outputText id="outputTextEstado" value="[teste01MB.estado=#{teste01MB.estado}]" />
+			<br />
+			<p><h:commandButton value="Listar Estados..." action="#{teste01MB.clickListarEstados}" /></p>
+			<p><h:commandButton value="Reload..." action="#{teste01MB.reload}" /></p>
+			<p><h:commandButton value="Next..." action="#{teste01MB.confirmar}" /></p>
+			<br />
+		</h:form>
+	</h:body>
+</html>

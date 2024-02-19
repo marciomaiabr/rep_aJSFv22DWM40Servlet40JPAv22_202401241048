@@ -25,37 +25,20 @@
 			<hr />
 			<br />
 
-			<h:outputLabel value="texto01">
-				<h:inputText id="inputTextTexto01" value="#{teste01MB.texto01}" />
-				<h:commandButton value="commandButtonTexto01" action="#{teste01MB.commandButtonTexto01Click}" actionListener="#{teste01MB.commandButtonTexto01ActionListener}" >
-					<f:ajax listener="#{teste01MB.commandButtonTexto01AjaxListener}" execute="inputTextTexto01 inputTextTexto02" render="outputTextTexto01 outputTextTexto02" immediate="true" />
+			<h:outputLabel value="Estado">
+				<h:selectOneMenu id="selectOneMenuEstado" value="#{teste01MB.estado}" >
+					<f:selectItems value="#{teste01MB.estados}" var="estado" itemValue="#{estado}" itemLabel="#{estado.nomeEstado}" />
+				</h:selectOneMenu>
+				<h:commandButton value="commandButtonEstado" action="#{teste01MB.commandButtonEstadoClick}" actionListener="#{teste01MB.commandButtonEstadoActionListener}" >
+					<f:ajax listener="#{teste01MB.commandButtonEstadoAjaxListener}" execute="selectOneMenuEstado" render="outputTextEstado" immediate="true" />
 				</h:commandButton>
-			</h:outputLabel>
-			<br />
-			<h:outputLabel value="texto02">
-				<h:inputText id="inputTextTexto02" value="#{teste01MB.texto02}" />
-			</h:outputLabel>
-			<br />
-			<h:outputLabel value="texto03">
-				<h:inputText id="inputTextTexto03" value="#{teste01MB.texto03}" />
-			</h:outputLabel>
-			<br />
-			<h:outputLabel value="texto04">
-				<h:inputText id="inputTextTexto04" value="#{teste01MB.texto04}" />
 			</h:outputLabel>
 
 			<br />
 			<hr />
 			<br />
 
-			<h:outputText id="outputTextTexto01" value="[teste01MB.texto01=#{teste01MB.texto01}]" />
-			<br />
-			<h:outputText id="outputTextTexto02" value="[teste01MB.texto02=#{teste01MB.texto02}]" />
-			<br />
-			<h:outputText id="outputTextTexto03" value="[teste01MB.texto03=#{teste01MB.texto03}]" />
-			<br />
-			<h:outputText id="outputTextTexto04" value="[teste01MB.texto04=#{teste01MB.texto04}]" />
-			<br />
+			<h:outputText id="outputTextEstado" value="[teste01MB.estado=#{teste01MB.estado}]" />
 
 			<br />
 			<p><h:commandButton value="Reload..." action="#{teste01MB.reload}" /></p>
