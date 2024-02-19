@@ -7,33 +7,34 @@
 	<h:head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>JSF 2.2</title>
+
+		<f:metadata>
+			<f:viewAction action="#{teste01MB.methodViewAction}" />
+		</f:metadata>
+
 	</h:head>
 	<h:body>
 		<h:form id="frm1">
+
+			<br />
 			<h1>Bem vindo...</h1>
+			<br />
+			<h:outputText value="XHTMLVersion: 20240219 0513" />
+
+			<br />
 			<hr />
-			<h:outputText value="MBVersion: #{teste01MB.version}" />
 			<br />
-			<h:outputText value="XHTMLVersion: 202402170923" />
+
+			<h:outputText value="[teste01MB.estado=#{teste01MB.estado}]" />
 			<br />
-			<hr />
+			<h:outputText value="[teste01MB.cidade=#{teste01MB.cidade}]" />
 			<br />
-			<h:outputText id="outputTextCampoText1" value="[teste01MB.campoText1=#{teste01MB.campoText1}]" />
+			<h:outputText value="[teste01MB.estadoOK=#{teste01MB.estadoOK}]" />
 			<br />
-			<h:outputText id="outputTextCampoText2" value="[teste01MB.campoText2=#{teste01MB.campoText2}]" />
+			<h:outputText value="[teste01MB.cidadeOK=#{teste01MB.cidadeOK}]" />
+
 			<br />
-			<h:outputText id="outputTextCampoText3" value="[teste01MB.campoText3=#{teste01MB.campoText3}]" />
-			<br />
-			<h:outputText id="outputTextIntegerIdEstado" value="[teste01MB.integerIdEstado=#{teste01MB.integerIdEstado}]" />
-			<br />
-			<h:outputText id="outputTextIntegerIdCidade" value="[teste01MB.integerIdCidade=#{teste01MB.integerIdCidade}]" />
-			<br />
-			<h:outputText id="outputTextEstado" value="[teste01MB.estado=#{teste01MB.estado}]" />
-			<br />
-			<p><h:commandButton value="Listar Estados..." action="#{teste01MB.clickListarEstados}" /></p>
-			<p><h:commandButton value="Reload..." action="#{teste01MB.reload}" /></p>
-			<p><h:commandButton value="Next..." action="#{teste01MB.confirmar}" /></p>
-			<br />
+
 		</h:form>
 	</h:body>
 </html>

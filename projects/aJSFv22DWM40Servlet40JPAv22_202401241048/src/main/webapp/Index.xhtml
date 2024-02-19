@@ -30,7 +30,16 @@
 					<f:selectItems value="#{teste01MB.estados}" var="estado" itemValue="#{estado}" itemLabel="#{estado.nomeEstado}" />
 				</h:selectOneMenu>
 				<h:commandButton value="commandButtonEstado" action="#{teste01MB.commandButtonEstadoClick}" actionListener="#{teste01MB.commandButtonEstadoActionListener}" >
-					<f:ajax listener="#{teste01MB.commandButtonEstadoAjaxListener}" execute="selectOneMenuEstado" render="outputTextEstado" immediate="true" />
+					<f:ajax listener="#{teste01MB.commandButtonEstadoAjaxListener}" execute="selectOneMenuEstado" render="selectOneMenuCidade outputTextEstado" immediate="true" />
+				</h:commandButton>
+			</h:outputLabel>
+			<br />
+			<h:outputLabel value="Cidade">
+				<h:selectOneMenu id="selectOneMenuCidade" value="#{teste01MB.cidade}" >
+					<f:selectItems value="#{teste01MB.estado.cidades}" var="cidade" itemValue="#{cidade}" itemLabel="#{cidade.nomeCidade}" />
+				</h:selectOneMenu>
+				<h:commandButton value="commandButtonCidade" action="#{teste01MB.commandButtonCidadeClick}" actionListener="#{teste01MB.commandButtonCidadeActionListener}" >
+					<f:ajax listener="#{teste01MB.commandButtonCidadeAjaxListener}" execute="selectOneMenuEstado selectOneMenuCidade" render="outputTextEstado outputTextCidade" immediate="true" />
 				</h:commandButton>
 			</h:outputLabel>
 
@@ -39,6 +48,8 @@
 			<br />
 
 			<h:outputText id="outputTextEstado" value="[teste01MB.estado=#{teste01MB.estado}]" />
+			<br />
+			<h:outputText id="outputTextCidade" value="[teste01MB.cidade=#{teste01MB.cidade}]" />
 
 			<br />
 			<p><h:commandButton value="Reload..." action="#{teste01MB.reload}" /></p>
