@@ -7,35 +7,35 @@ import javax.faces.convert.FacesConverter;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 
-import pkgs.models.Cidade;
+import pkgs.models.Empresa;
 import pkgs.utils.JSFUtil;
 
-@FacesConverter(forClass = Cidade.class)
-public class CidadeConverter implements Converter {
+@FacesConverter(forClass = Empresa.class)
+public class EmpresaConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		System.out.println("CidadeConverter.getAsObject()");
+		System.out.println("EmpresaConverter.getAsObject()");
 		System.out.println("     " + "[value="+value+"]");
 		if(value != null) {
 			HttpServletRequest request = JSFUtil.getRequest();
 
 			EntityManager em = (EntityManager) request.getAttribute("entityManager");
 
-			Cidade cidade = em.find(Cidade.class, Integer.valueOf(value));
+			Empresa empresa = em.find(Empresa.class, Integer.valueOf(value));
 
-			return cidade;
+			return empresa;
 		}
 		return null;
 	}
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		System.out.println("CidadeConverter.getAsString()");
+		System.out.println("EmpresaConverter.getAsString()");
 		System.out.println("     " + "[value="+value+"]");
 		if(value != null) {
-			Cidade cidade = (Cidade) value;
-			return cidade.getIdCidade().toString();
+			Empresa empresa = (Empresa) value;
+			return empresa.getId().toString();
 		}
 		return null;
 	}
