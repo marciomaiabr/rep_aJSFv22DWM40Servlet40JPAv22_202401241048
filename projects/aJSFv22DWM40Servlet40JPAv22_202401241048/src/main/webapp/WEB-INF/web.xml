@@ -5,6 +5,9 @@
     <param-name>javax.faces.PROJECT_STAGE</param-name>
     <param-value>Development</param-value>
   </context-param>
+  <listener>
+    <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+  </listener>
   <welcome-file-list>
     <welcome-file>Index.xhtml</welcome-file>
   </welcome-file-list>
