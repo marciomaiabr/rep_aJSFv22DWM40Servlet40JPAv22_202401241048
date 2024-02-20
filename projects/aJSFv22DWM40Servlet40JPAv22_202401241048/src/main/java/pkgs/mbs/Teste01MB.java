@@ -1,15 +1,19 @@
 package pkgs.mbs;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import pkgs.utils.JSFUtil;
 
-@ManagedBean
+@Named
 @ViewScoped
-public class Teste01MB {
+public class Teste01MB implements Serializable {
+
+	private static final long serialVersionUID = 202402200415L;
 
 	static {
 		System.out.println("Teste01MB.static");
@@ -37,6 +41,14 @@ public class Teste01MB {
 		System.out.println("Teste01MB.methodTest()");
 
 		souts();
+	}
+
+	public String nextPage() {
+		System.out.println("Teste01MB.nextPage()");
+
+		souts();
+
+		return "Page02";
 	}
 
 	@PreDestroy
