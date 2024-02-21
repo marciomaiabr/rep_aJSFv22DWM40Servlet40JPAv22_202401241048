@@ -8,8 +8,10 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import pkgs.models.Empresa;
+import pkgs.qualifiers.DefaultPersistenceQualifier;
 import pkgs.repositoryEspec.EmpresaRepositoryEspec;
 
+@DefaultPersistenceQualifier
 public class EmpresaRepositoryJPA implements Serializable, EmpresaRepositoryEspec {
 
 	private static final long serialVersionUID = 20240221040803L;

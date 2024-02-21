@@ -4,12 +4,10 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.enterprise.inject.Alternative;
 
 import pkgs.models.Empresa;
 import pkgs.repositoryEspec.EmpresaRepositoryEspec;
 
-@Alternative
 public class EmpresaRepositoryOtherPersistenceTechnology implements Serializable, EmpresaRepositoryEspec {
 
 	private static final long serialVersionUID = 20240221040803L;
