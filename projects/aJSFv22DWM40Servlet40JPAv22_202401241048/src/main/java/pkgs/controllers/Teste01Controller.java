@@ -17,6 +17,8 @@ public class Teste01Controller implements Serializable {
 
 	private static final long serialVersionUID = 20240221040801L;
 
+	private Empresa empresa;
+
 	@Inject
 	private EmpresaServiceEspec ese;
 
@@ -37,13 +39,22 @@ public class Teste01Controller implements Serializable {
 		System.out.println("Teste01Controller.methodViewAction()[" + (this) + "]");
 	}
 
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		System.out.println("Teste01Controller.setEmpresa()[" + (this) + "]");
+		System.out.println("     " + "     " + "[empresa=" + (empresa) + "][this.empresa=" + (this.empresa) + "]");
+		this.empresa = empresa;
+	}
+
 	public void methodTest() {
 		System.out.println("Teste01Controller.methodTest()[" + (this) + "]");
 
 		System.out.println("     " + "[ese][" + (ese != null ? ese.getClass().toString() : "") + "][" + ese + "]");
 
-		Empresa empresa = ese.buscar(1);
-		System.out.println("[empresa=" + (empresa) + "]");
+		System.out.println("     " + "     " + "[empresa=" + (ese.buscar(1)) + "]");
 	}
 
 	public String nextPage() {
