@@ -35,7 +35,7 @@ public class EmpresaConverter implements Converter {
 		System.out.println("     " + "[value="+value+"]");
 		if(value != null) {
 			Empresa empresa = (Empresa) value;
-			return empresa.getId().toString();
+			return empresa.getIdEmpresa().toString();
 		}
 		return null;
 	}

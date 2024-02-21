@@ -15,16 +15,16 @@ public class Empresa implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer idEmpresa;
 	private String razaoSocial;
 	private String nomeFantasia;
 
-	public Integer getId() {
-		return id;
+	public Integer getIdEmpresa() {
+		return idEmpresa;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdEmpresa(Integer idEmpresa) {
+		this.idEmpresa = idEmpresa;
 	}
 
 	public String getRazaoSocial() {
@@ -46,9 +46,9 @@ public class Empresa implements Serializable {
 	public Empresa() {
 	}
 
-	public Empresa(Integer id, String razaoSocial, String nomeFantasia) {
+	public Empresa(Integer idEmpresa, String razaoSocial, String nomeFantasia) {
 		super();
-		this.id = id;
+		this.idEmpresa = idEmpresa;
 		this.razaoSocial = razaoSocial;
 		this.nomeFantasia = nomeFantasia;
 	}
@@ -61,12 +61,12 @@ public class Empresa implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Empresa [id=" + id + ", razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia + "]";
+		return "Empresa [idEmpresa=" + idEmpresa + ", razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(idEmpresa);
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class Empresa implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Empresa other = (Empresa) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(idEmpresa, other.idEmpresa);
 	}
 
 }

@@ -10,6 +10,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
+import pkgs.utils.JSFUtil;
+
 @WebFilter(servletNames = { "Faces Servlet" })
 public class Teste01ServletFilter implements Filter {
 
@@ -20,6 +22,7 @@ public class Teste01ServletFilter implements Filter {
 	@Override
 	public void init(FilterConfig config) throws ServletException {
 		System.out.println("Teste01ServletFilter.init()");
+		System.out.println("[JSFUtil.getProjectStage()=" + JSFUtil.getProjectStage() + "]");
 	}
 
 	@Override
