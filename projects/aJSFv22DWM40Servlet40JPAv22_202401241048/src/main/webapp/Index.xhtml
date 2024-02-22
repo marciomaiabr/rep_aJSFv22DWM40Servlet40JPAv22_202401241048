@@ -8,11 +8,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>JSF 2.2</title>
 
-		<f:metadata>
-			<f:viewAction action="#{teste01Controller.methodViewAction}" />
-			<f:viewParam name="paramIdEmpresa" value="#{teste01Controller.empresa}" />
-		</f:metadata>
-
 	</h:head>
 	<h:body>
 		<h:form id="frm1">
@@ -20,16 +15,17 @@
 			<br />
 			<h1>Bem vindo...</h1>
 			<br />
-			<h:outputText value="XHTMLVersion: 20240221 0408" />
+			<h:outputText value="XHTMLVersion: 20240222 0532" />
 
 			<br />
 			<hr />
 			<br />
 
-			<p><h:commandButton value="Tst..." action="#{teste01Controller.methodTest}" /></p>
+			<p><h:commandButton value="setCalculadoraImpl01..." action="#{teste01Controller.setCalculadoraImpl01}" /></p>
+			<p><h:commandButton value="setCalculadoraImpl02..." action="#{teste01Controller.setCalculadoraImpl02}" /></p>
+			<p><h:commandButton value="setCalculadoraImpl03..." action="#{teste01Controller.setCalculadoraImpl03}" /></p>
 			<br />
-			<p><h:commandButton value="NextPage..." action="#{teste01Controller.nextPage}" /></p>
-			<br />
+			<p><h:commandButton value="Calcula..." action="#{teste01Controller.calcula}" /></p>
 
 		</h:form>
 	</h:body>
