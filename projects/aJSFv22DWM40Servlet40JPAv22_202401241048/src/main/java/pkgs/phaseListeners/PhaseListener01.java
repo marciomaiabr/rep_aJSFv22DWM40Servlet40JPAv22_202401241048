@@ -4,6 +4,8 @@ import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
 
+import pkgs.utils.JSFUtil;
+
 public class PhaseListener01 implements PhaseListener {
 
 	private static final long serialVersionUID = 20240219054100L;
@@ -22,6 +24,8 @@ public class PhaseListener01 implements PhaseListener {
 
 	public void afterPhase(PhaseEvent event) {
 		System.out.println("FINALIZANDO FASE: " + event.getPhaseId());
+		if (event.getPhaseId() == PhaseId.RENDER_RESPONSE)
+			JSFUtil.writeCDIBeans();
 	}
 
 }
