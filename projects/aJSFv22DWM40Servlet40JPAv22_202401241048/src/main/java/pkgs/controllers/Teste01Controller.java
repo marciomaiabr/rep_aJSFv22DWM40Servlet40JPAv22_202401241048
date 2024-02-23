@@ -5,11 +5,13 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 import pkgs.beansEspec.CalculadoraEspec;
-import pkgs.qualifiers.DefaultCalculadoraQualifier;
+import pkgs.beansImpl.CalculadoraImpl01;
+import pkgs.beansImpl.CalculadoraImpl02;
+import pkgs.beansImpl.CalculadoraImpl03;
+import pkgs.utils.CDIServiceLocator;
 
 @Named
 @ViewScoped
@@ -17,7 +19,6 @@ public class Teste01Controller implements Serializable {
 
 	private static final long serialVersionUID = 20240221040801L;
 
-	@Inject @DefaultCalculadoraQualifier
 	private CalculadoraEspec calculadoraEspec;
 
 	static {
@@ -33,9 +34,33 @@ public class Teste01Controller implements Serializable {
 		System.out.println("Teste01Controller.postConstruct()[" + (this) + "]");
 	}
 
-	public void setCalculadoraImplByProducer() {
-		System.out.println("Teste01Controller.setCalculadoraImplByProducer()[" + (this) + "]");
+	public void setCalculadoraImpl01() {
+		System.out.println("Teste01Controller.setCalculadoraImpl01()[" + (this) + "]");
+		CalculadoraImpl01 calculadoraImpl01 = CDIServiceLocator.getBean(CalculadoraImpl01.class);
+		System.out.println("[calculadoraImpl01=" + (calculadoraImpl01) + "][calculadoraImpl01.getClass()=" + (calculadoraImpl01.getClass()) + "]");
+		calculadoraEspec = (CalculadoraEspec) calculadoraImpl01;
 		System.out.println("[calculadoraEspec=" + (calculadoraEspec) + "][calculadoraEspec.getClass()=" + (calculadoraEspec.getClass()) + "]");
+	}
+
+	public void setCalculadoraImpl02() {
+		System.out.println("Teste01Controller.setCalculadoraImpl02()[" + (this) + "]");
+		CalculadoraImpl02 calculadoraImpl02 = CDIServiceLocator.getBean(CalculadoraImpl02.class);
+		System.out.println("[calculadoraImpl02=" + (calculadoraImpl02) + "][calculadoraImpl02.getClass()=" + (calculadoraImpl02.getClass()) + "]");
+		calculadoraEspec = (CalculadoraEspec) calculadoraImpl02;
+		System.out.println("[calculadoraEspec=" + (calculadoraEspec) + "][calculadoraEspec.getClass()=" + (calculadoraEspec.getClass()) + "]");
+	}
+
+	public void setCalculadoraImpl03() {
+		System.out.println("Teste01Controller.setCalculadoraImpl03()[" + (this) + "]");
+		CalculadoraImpl03 calculadoraImpl03 = CDIServiceLocator.getBean(CalculadoraImpl03.class);
+		System.out.println("[calculadoraImpl03=" + (calculadoraImpl03) + "][calculadoraImpl03.getClass()=" + (calculadoraImpl03.getClass()) + "]");
+		calculadoraEspec = (CalculadoraEspec) calculadoraImpl03;
+		System.out.println("[calculadoraEspec=" + (calculadoraEspec) + "][calculadoraEspec.getClass()=" + (calculadoraEspec.getClass()) + "]");
+	}
+
+	public String gotoPage02ByControllerMethod() {
+		System.out.println("Teste01Controller.gotoPage02ByControllerMethod()[" + (this) + "]");
+		return "Page02";
 	}
 
 	@PreDestroy
