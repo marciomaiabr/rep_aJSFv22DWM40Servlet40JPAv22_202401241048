@@ -1,6 +1,6 @@
 package pkgs.beansEspec;
 
-public interface CalculadoraEspec {
+public interface Bean01Espec {
 
 	String getNome();
 
