@@ -10,29 +10,29 @@ import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
 
 import pkgs.beansEspec.CalculadoraEspec;
-import pkgs.qualifiers.DefaultCalculadoraQualifier;
 
 @ApplicationScoped
-public class CalculadoraImplProducer01 implements Serializable {
+public class CalculadoraImplProducer02 implements Serializable {
 
 	private static final long serialVersionUID = 20240221040804L;
 
 	static {
-		System.out.println("CalculadoraImplProducer01.static");
+		System.out.println("CalculadoraImplProducer02.static");
 	}
 
-	public CalculadoraImplProducer01() {
-		System.out.println("CalculadoraImplProducer01.()[" + (this) + "]");
+	public CalculadoraImplProducer02() {
+		System.out.println("CalculadoraImplProducer02.()[" + (this) + "]");
 	}
 
 	@PostConstruct
 	public void postConstruct() {
-		System.out.println("CalculadoraImplProducer01.postConstruct()[" + (this) + "]");
+		System.out.println("CalculadoraImplProducer02.postConstruct()[" + (this) + "]");
 	}
 
-	@Produces @RequestScoped @DefaultCalculadoraQualifier
+	@Produces
+	@RequestScoped
 	public CalculadoraEspec createInstance() {
-		System.out.println("CalculadoraImplProducer01.createInstance()");
+		System.out.println("CalculadoraImplProducer02.createInstance()");
 
 		CalculadoraEspec ce = createInstanceWithImplementation();
 
@@ -42,7 +42,7 @@ public class CalculadoraImplProducer01 implements Serializable {
 	}
 
 	public CalculadoraEspec createInstanceWithImplementation() {
-		System.out.println("CalculadoraImplProducer01.createInstanceWithImplementation()");
+		System.out.println("CalculadoraImplProducer02.createInstanceWithImplementation()");
 
 		return new CalculadoraEspec() {
 
@@ -76,20 +76,20 @@ public class CalculadoraImplProducer01 implements Serializable {
 
 	}
 
-	public void closeInstance(@Disposes @DefaultCalculadoraQualifier CalculadoraEspec calculadoraEspec) {
-		System.out.println("CalculadoraImplProducer01.closeInstance()");
+	public void closeInstance(@Disposes CalculadoraEspec calculadoraEspec) {
+		System.out.println("CalculadoraImplProducer02.closeInstance()");
 		System.out.println("[calculadoraEspec=" + (calculadoraEspec) + "]");
 	}
 
 	@PreDestroy
 	public void preDestroy() {
-		System.out.println("CalculadoraImplProducer01.preDestroy()[" + (this) + "]");
+		System.out.println("CalculadoraImplProducer02.preDestroy()[" + (this) + "]");
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void finalize() throws Throwable {
-		System.out.println("CalculadoraImplProducer01.finalize()[" + (this) + "]");
+		System.out.println("CalculadoraImplProducer02.finalize()[" + (this) + "]");
 		super.finalize();
 	}
 

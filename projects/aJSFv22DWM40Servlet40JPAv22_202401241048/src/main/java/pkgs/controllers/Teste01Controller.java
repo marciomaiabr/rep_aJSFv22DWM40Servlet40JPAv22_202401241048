@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import pkgs.beansEspec.CalculadoraEspec;
+import pkgs.qualifiers.DefaultCalculadoraQualifier;
 
 @Named
 @ViewScoped
@@ -16,7 +17,7 @@ public class Teste01Controller implements Serializable {
 
 	private static final long serialVersionUID = 20240221040801L;
 
-	@Inject
+	@Inject @DefaultCalculadoraQualifier
 	private CalculadoraEspec calculadoraEspec;
 
 	static {
