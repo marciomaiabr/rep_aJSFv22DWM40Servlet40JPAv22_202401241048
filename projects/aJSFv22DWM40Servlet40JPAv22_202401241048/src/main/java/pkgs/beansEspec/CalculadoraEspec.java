@@ -1,4 +1,4 @@
-package pkgs.controllers;
+package pkgs.beansEspec;
 
 public interface CalculadoraEspec {
 
