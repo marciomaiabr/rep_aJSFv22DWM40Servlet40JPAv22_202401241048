@@ -1,0 +1,7 @@
+package pkgs.beansAbstract;
+
+public abstract class Bean01Abstract {
+
+	public abstract String getNome();
+
+}
