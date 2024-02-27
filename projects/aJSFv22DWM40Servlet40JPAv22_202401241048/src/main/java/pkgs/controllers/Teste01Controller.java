@@ -5,11 +5,8 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
-
-import pkgs.beansImpl.Bean01NoEspec;
 
 @Named
 // @javax.enterprise.context.RequestScoped
@@ -19,9 +16,6 @@ import pkgs.beansImpl.Bean01NoEspec;
 public class Teste01Controller implements Serializable {
 
 	private static final long serialVersionUID = 20240221040801L;
-
-	@Inject
-	private Bean01NoEspec b01ne;
 
 	static {
 		System.out.println("Teste01Controller.static");
@@ -38,7 +32,6 @@ public class Teste01Controller implements Serializable {
 
 	public void usingBean() {
 		System.out.println("Teste01Controller.usingBean()[" + (this) + "]");
-		System.out.println("[b01ne=" + (b01ne) + "]");
 	}
 
 	public String gotoPage02ByControllerMethod() {
