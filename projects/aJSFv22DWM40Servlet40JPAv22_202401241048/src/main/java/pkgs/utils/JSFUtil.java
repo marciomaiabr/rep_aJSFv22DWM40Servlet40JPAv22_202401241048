@@ -54,18 +54,18 @@ public class JSFUtil {
 				Context context = bm.getContext(bean.getScope());
 				// Get a reference to the instantiated bean, or null if none exists
 				Object instance = context.get(bean);
-				if (instance != null) {
-					if (bean.getClass().getName().equals("org.jboss.weld.bean.builtin.ExtensionBean")
-							|| bean.getBeanClass().getName().equals("com.sun.faces.flow.FlowDiscoveryCDIExtension")
-
-					)
-						continue;
-
-					System.out.println("[bean=" + (bean) + "]");
-					System.out.println("[creationalContext=" + (creationalContext) + "]");
-					System.out.println("[context=" + (context) + "]");
-					System.out.println("[beanInstance=" + (instance) + "]");
-					System.out.println();
+				if (bean.getClass().getName().startsWith("pkgs.")
+						|| bean.getBeanClass().getName().startsWith("pkgs.")) {
+					if (instance == null) {
+						System.out.println("[bean=" + (bean) + "]");
+					} else {
+						System.out.println();
+						System.out.println("[bean=" + (bean) + "]");
+						System.out.println("[creationalContext=" + (creationalContext) + "]");
+						System.out.println("[context=" + (context) + "]");
+						System.out.println("[beanInstance=" + (instance) + "]");
+						System.out.println();
+					}
 				}
 			}
 
