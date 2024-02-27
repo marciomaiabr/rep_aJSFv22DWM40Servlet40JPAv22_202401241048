@@ -19,7 +19,7 @@ public class PhaseListener01 implements PhaseListener {
 	}
 
 	public void beforePhase(PhaseEvent event) {
-		System.out.println("INICIANDO FASE: " + event.getPhaseId());
+		System.out.println("[INICIANDO FASE]" + "[" + (event.getPhaseId()) + "]");
 	}
 
 	public void afterPhase(PhaseEvent event) {
