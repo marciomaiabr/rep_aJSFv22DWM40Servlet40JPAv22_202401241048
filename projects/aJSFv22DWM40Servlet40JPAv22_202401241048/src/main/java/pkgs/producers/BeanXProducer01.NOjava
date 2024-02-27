@@ -12,7 +12,7 @@ import javax.enterprise.inject.Produces;
 import pkgs.beansEspec.Bean02Espec;
 
 @ApplicationScoped
-public class Bean02ImplProducer01 implements Serializable {
+public class BeanXProducer01 implements Serializable {
 
 	private static final long serialVersionUID = 20240221040804L;
 
