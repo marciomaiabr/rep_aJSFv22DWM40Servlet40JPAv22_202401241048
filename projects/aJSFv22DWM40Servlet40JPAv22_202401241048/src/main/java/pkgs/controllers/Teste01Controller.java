@@ -30,8 +30,8 @@ public class Teste01Controller implements Serializable {
 		System.out.println("Teste01Controller.postConstruct()[" + (this) + "]");
 	}
 
-	public void usingBean() {
-		System.out.println("Teste01Controller.usingBean()[" + (this) + "]");
+	public void method01() {
+		System.out.println("Teste01Controller.method01()[" + (this) + "]");
 	}
 
 	public String gotoPage02ByControllerMethod() {
