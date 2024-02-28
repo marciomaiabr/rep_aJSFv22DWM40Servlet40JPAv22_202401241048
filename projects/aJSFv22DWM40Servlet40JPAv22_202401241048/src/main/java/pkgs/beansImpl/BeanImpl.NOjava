@@ -7,40 +7,40 @@ import javax.annotation.PreDestroy;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 
-import pkgs.beansEspec.Bean01Espec;
+import pkgs.beansEspec.BeanEspec;
 
 @SessionScoped
-public class Bean01Impl implements Serializable, Bean01Espec {
+public class BeanImpl implements Serializable, BeanEspec {
 
 	private static final long serialVersionUID = 20240222085601L;
 
 	static {
-		System.out.println("Bean01Impl.static");
+		System.out.println("BeanImpl.static");
 	}
 
-	public Bean01Impl() {
-		System.out.println("Bean01Impl.()[" + (this) + "]");
+	public BeanImpl() {
+		System.out.println("BeanImpl.()[" + (this) + "]");
 	}
 
 	@PostConstruct
 	public void postConstruct() {
-		System.out.println("Bean01Impl.postConstruct()[" + (this) + "]");
+		System.out.println("BeanImpl.postConstruct()[" + (this) + "]");
 	}
 
 	@Override
 	public String getNome() {
-		return "Bean01Impl";
+		return "BeanImpl";
 	}
 
 	@PreDestroy
 	public void preDestroy() {
-		System.out.println("Bean01Impl.preDestroy()[" + (this) + "]");
+		System.out.println("BeanImpl.preDestroy()[" + (this) + "]");
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void finalize() throws Throwable {
-		System.out.println("Bean01Impl.finalize()[" + (this) + "]");
+		System.out.println("BeanImpl.finalize()[" + (this) + "]");
 		super.finalize();
 	}
 

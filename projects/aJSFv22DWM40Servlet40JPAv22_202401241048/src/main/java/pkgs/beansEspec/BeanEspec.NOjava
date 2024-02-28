@@ -1,6 +1,6 @@
 package pkgs.beansEspec;
 
-public interface Bean01Espec {
+public interface BeanEspec {
 
 	String getNome();
 
