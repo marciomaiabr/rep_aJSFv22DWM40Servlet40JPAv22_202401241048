@@ -28,20 +28,20 @@ public class BeanXProducer01 implements Serializable {
 	}
 
 	@Produces
-	public TheObj createInstance() {
+	public TheClass createInstance() {
 		System.out.println("BeanXProducer01.createInstance()");
 
-		TheObj theObj = createInstanceWithImplementation();
+		TheClass theInstance = createInstanceWithImplementation();
 
-		System.out.println("     " + "[theObj][" + theObj.getClass() + "][" + theObj + "]");
+		System.out.println("     " + "[theInstance][" + theInstance.getClass() + "][" + theInstance + "]");
 
-		return theObj;
+		return theInstance;
 	}
 
-	public TheObj createInstanceWithImplementation() {
+	public TheClass createInstanceWithImplementation() {
 		System.out.println("BeanXProducer01.createInstanceWithImplementation()");
 
-		return new TheObj() {
+		return new TheClass() {
 
 			static {
 				System.out.println("BeanXProducer01.createInstanceWithImplementation().static");
@@ -55,7 +55,7 @@ public class BeanXProducer01 implements Serializable {
 
 			@Override
 			public String getNome() {
-				return "TheObjImpl";
+				return "TheClassImpl";
 			}
 
 			@PreDestroy
@@ -76,9 +76,9 @@ public class BeanXProducer01 implements Serializable {
 
 	}
 
-	public void closeInstance(@Disposes TheObj theObj) {
+	public void closeInstance(@Disposes TheClass theInstance) {
 		System.out.println("BeanXProducer01.closeInstance()");
-		System.out.println("[theObj" + (theObj) + "]");
+		System.out.println("[theInstance" + (theInstance) + "]");
 	}
 
 	@PreDestroy
