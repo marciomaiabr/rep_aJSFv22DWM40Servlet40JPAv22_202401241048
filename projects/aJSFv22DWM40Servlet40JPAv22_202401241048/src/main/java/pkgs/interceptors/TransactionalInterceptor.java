@@ -10,8 +10,7 @@ import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-
-import pkgs.qualifiers.Transactional;
+import javax.transaction.Transactional;
 
 @Interceptor
 @Transactional
@@ -40,28 +39,29 @@ public class TransactionalInterceptor implements Serializable {
 		System.out.println("TransactionalInterceptor.invoke()");
 
 		EntityTransaction entityTransaction = entityManager.getTransaction();
-		
+		System.out.println("[entityTransaction=" + (entityTransaction) + "]");
+
 		boolean criador = false;
-		
+
 		try {
-			if(!entityTransaction.isActive()) {
+			if (!entityTransaction.isActive()) {
 				entityTransaction.begin();
 				entityTransaction.rollback();
-				
+
 				entityTransaction.begin();
-				
+
 				criador = true;
 			}
-			
+
 			return context.proceed();
 		} catch (Exception e) {
-			if(entityTransaction != null && criador) {
+			if (entityTransaction != null && criador) {
 				entityTransaction.rollback();
 			}
 
 			throw e;
 		} finally {
-			if(entityTransaction != null && entityTransaction.isActive() && criador) {
+			if (entityTransaction != null && entityTransaction.isActive() && criador) {
 				entityTransaction.commit();
 			}
 

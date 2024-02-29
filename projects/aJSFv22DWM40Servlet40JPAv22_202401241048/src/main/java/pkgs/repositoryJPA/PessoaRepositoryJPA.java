@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import pkgs.models.Pessoa;
 import pkgs.repositoryEspec.PessoaRepositoryEspec;
@@ -57,8 +58,9 @@ public class PessoaRepositoryJPA implements Serializable, PessoaRepositoryEspec 
 	}
 
 	@Override
+	@Transactional
 	public Pessoa save(Pessoa pessoa) {
-		System.out.println("PessoaRepositoryJPA.list()[" + (this) + "]");
+		System.out.println("PessoaRepositoryJPA.save1()[" + (this) + "]");
 
 		System.out.println("     " + "[em][" + (em != null ? em.getClass().toString() : "") + "][" + em + "]");
 
@@ -79,7 +81,7 @@ public class PessoaRepositoryJPA implements Serializable, PessoaRepositoryEspec 
 
 	@Override
 	public void delete(Pessoa pessoa) {
-		System.out.println("PessoaRepositoryJPA.list()[" + (this) + "]");
+		System.out.println("PessoaRepositoryJPA.delete()[" + (this) + "]");
 
 		System.out.println("     " + "[em][" + (em != null ? em.getClass().toString() : "") + "][" + em + "]");
 

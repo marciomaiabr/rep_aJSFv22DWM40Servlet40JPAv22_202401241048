@@ -1,12 +1,17 @@
 package pkgs.controllers;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+
+import pkgs.models.Pessoa;
+import pkgs.serviceEspec.PessoaServiceEspec;
 
 @Named
 // @javax.enterprise.context.RequestScoped
@@ -16,6 +21,9 @@ import javax.servlet.http.HttpSession;
 public class Teste01Controller implements Serializable {
 
 	private static final long serialVersionUID = 20240221040801L;
+
+	@Inject
+	private PessoaServiceEspec ps;
 
 	static {
 		System.out.println("Teste01Controller.static");
@@ -37,6 +45,11 @@ public class Teste01Controller implements Serializable {
 
 	public void method01() {
 		System.out.println("Teste01Controller.method01()[" + (this) + "]");
+		System.out.println("[ps=" + (ps) + "]");
+		Pessoa p01 = new Pessoa("Aninha " + LocalDateTime.now());
+		System.out.println("[p01=" + (p01) + "]");
+		Pessoa p02 = ps.salvar(p01);
+		System.out.println("[p02=" + (p02) + "]");
 	}
 
 	public void reloadByControllerMethod() {

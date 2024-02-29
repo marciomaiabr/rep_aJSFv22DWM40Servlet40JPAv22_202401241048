@@ -8,7 +8,6 @@ import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 
 import pkgs.models.Pessoa;
-import pkgs.qualifiers.Transactional;
 import pkgs.repositoryEspec.PessoaRepositoryEspec;
 import pkgs.serviceEspec.PessoaServiceEspec;
 
@@ -57,7 +56,6 @@ public class PessoaServiceImpl implements Serializable, PessoaServiceEspec {
 	}
 
 	@Override
-	@Transactional
 	public Pessoa salvar(Pessoa pessoa) {
 		System.out.println("PessoaServiceImpl.salvar()[" + (this) + "]");
 
