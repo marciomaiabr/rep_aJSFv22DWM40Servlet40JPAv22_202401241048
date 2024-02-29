@@ -70,7 +70,7 @@ public class JSFUtil {
 						sb.append("[creationalContext=" + (creationalContext) + "]");
 						sb.append("[context=" + (context) + "]");
 						sb.append("[beanInstance=" + (instance) + "]");
-						listCDIBeansWithOutInstance.add(sb.toString());
+						listCDIBeansWithInstance.add(sb.toString());
 					}
 				}
 			}
