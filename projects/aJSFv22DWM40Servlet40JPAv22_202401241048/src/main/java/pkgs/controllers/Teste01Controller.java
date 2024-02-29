@@ -1,7 +1,6 @@
 package pkgs.controllers;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -10,8 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
-import pkgs.models.Pessoa;
-import pkgs.serviceImpl.PessoaServiceImpl;
+import pkgs.beansEspec.BeanEspec;
 
 @Named
 // @javax.enterprise.context.RequestScoped
@@ -23,7 +21,7 @@ public class Teste01Controller implements Serializable {
 	private static final long serialVersionUID = 20240221040801L;
 
 	@Inject
-	private PessoaServiceImpl ps;
+	private BeanEspec bean;
 
 	static {
 		System.out.println("Teste01Controller.static");
@@ -40,10 +38,11 @@ public class Teste01Controller implements Serializable {
 
 	public void method01() {
 		System.out.println("Teste01Controller.method01()[" + (this) + "]");
-		Pessoa pessoa = new Pessoa();
-		pessoa.setNomePessoa("Fernanda " + LocalDateTime.now());
-		Pessoa pessoaRetornoSalvar = ps.salvar(pessoa);
-		System.out.println("     " + "[pessoaRetornoSalvar][" + (pessoaRetornoSalvar.getClass()) + "][" + pessoaRetornoSalvar + "]");
+		//Pessoa pessoa = new Pessoa();
+		//pessoa.setNomePessoa("Fernanda " + LocalDateTime.now());
+		//Pessoa pessoaRetornoSalvar = ps.salvar(pessoa);
+		//System.out.println("     " + "[pessoaRetornoSalvar][" + (pessoaRetornoSalvar.getClass()) + "][" + pessoaRetornoSalvar + "]");
+		System.out.println("     " + "[bean][" + (bean.getClass()) + "][" + bean + "]");
 	}
 
 	public String gotoPage02ByControllerMethod() {
