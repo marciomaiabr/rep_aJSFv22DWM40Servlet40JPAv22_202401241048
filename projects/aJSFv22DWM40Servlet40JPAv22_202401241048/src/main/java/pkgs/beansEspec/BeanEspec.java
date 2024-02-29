@@ -1,6 +1,8 @@
 package pkgs.beansEspec;
 
-public interface BeanEspec {
+import java.io.Serializable;
+
+public interface BeanEspec extends Serializable {
 
 	String getNome();
 
