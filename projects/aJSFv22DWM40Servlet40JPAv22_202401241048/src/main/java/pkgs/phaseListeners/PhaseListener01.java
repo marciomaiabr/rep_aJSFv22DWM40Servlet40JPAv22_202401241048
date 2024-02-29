@@ -1,8 +1,13 @@
 package pkgs.phaseListeners;
 
+import java.util.List;
+
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import pkgs.utils.JSFUtil;
 
@@ -10,8 +15,10 @@ public class PhaseListener01 implements PhaseListener {
 
 	private static final long serialVersionUID = 20240219054100L;
 
+	private static Log log = LogFactory.getLog(PhaseListener01.class);
+
 	public PhaseListener01() {
-		System.out.println("PhaseListener01.PhaseListener01()");
+		log.info("PhaseListener01.PhaseListener01()");
 	}
 
 	public PhaseId getPhaseId() {
@@ -19,13 +26,13 @@ public class PhaseListener01 implements PhaseListener {
 	}
 
 	public void beforePhase(PhaseEvent event) {
-		System.out.println("[INICIANDO FASE]" + "[" + (event.getPhaseId()) + "]");
+		log.info("[INICIANDO FASE]" + "[" + (event.getPhaseId()) + "]");
 	}
 
 	public void afterPhase(PhaseEvent event) {
-		System.out.println("FINALIZANDO FASE: " + event.getPhaseId());
+		log.info("FINALIZANDO FASE: " + event.getPhaseId());
 		if (event.getPhaseId() == PhaseId.RENDER_RESPONSE)
-			JSFUtil.writeCDIBeans();
+			JSFUtil.listCDIBeans().forEach(log::info);;
 	}
 
 }

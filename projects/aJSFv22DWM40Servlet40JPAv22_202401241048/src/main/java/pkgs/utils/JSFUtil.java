@@ -1,6 +1,8 @@
 package pkgs.utils;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import javax.enterprise.context.spi.Context;
@@ -31,8 +33,12 @@ public class JSFUtil {
 		return projectStage;
 	}
 
-	public static void writeCDIBeans() {
-		System.out.println("JSFUtil.writeCDIBeans()");
+	public static List<String> listCDIBeans() {
+		System.out.println("JSFUtil.listCDIBeans()");
+
+		List<String> listCDIBeansWithOutInstance = new ArrayList<>();
+		List<String> listCDIBeansWithInstance = new ArrayList<>();
+		List<String> listCDIBeans = new ArrayList<>();
 
 		try {
 			InitialContext initialContext = new InitialContext();
@@ -57,14 +63,14 @@ public class JSFUtil {
 				if (bean.getClass().getName().startsWith("pkgs.")
 						|| bean.getBeanClass().getName().startsWith("pkgs.")) {
 					if (instance == null) {
-						System.out.println("[bean=" + (bean) + "]");
+						listCDIBeansWithOutInstance.add("[bean=" + (bean) + "]");
 					} else {
-						System.out.println();
-						System.out.println("[bean=" + (bean) + "]");
-						System.out.println("[creationalContext=" + (creationalContext) + "]");
-						System.out.println("[context=" + (context) + "]");
-						System.out.println("[beanInstance=" + (instance) + "]");
-						System.out.println();
+						StringBuffer sb = new StringBuffer();
+						sb.append("[bean=" + (bean) + "]");
+						sb.append("[creationalContext=" + (creationalContext) + "]");
+						sb.append("[context=" + (context) + "]");
+						sb.append("[beanInstance=" + (instance) + "]");
+						listCDIBeansWithOutInstance.add(sb.toString());
 					}
 				}
 			}
@@ -73,6 +79,13 @@ public class JSFUtil {
 			e.printStackTrace();
 		}
 
+		listCDIBeans.add("CDIBeansWithInstance");
+		listCDIBeans.addAll(listCDIBeansWithInstance);
+		listCDIBeans.add("");
+		listCDIBeans.add("CDIBeansWithOutInstance");
+		listCDIBeans.addAll(listCDIBeansWithOutInstance);
+
+		return listCDIBeans;
 	}
 
 }
