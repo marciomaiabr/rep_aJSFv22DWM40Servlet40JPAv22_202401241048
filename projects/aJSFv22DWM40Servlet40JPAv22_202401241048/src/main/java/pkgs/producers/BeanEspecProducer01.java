@@ -11,7 +11,7 @@ import pkgs.beansEspec.BeanEspec;
 
 //@javax.enterprise.context.RequestScoped
 //@javax.faces.view.ViewScoped
-//@javax.enterprise.context.SessionScoped
+@javax.enterprise.context.SessionScoped
 public class BeanEspecProducer01 implements Serializable {
 
 	private static final long serialVersionUID = 20240221040804L;
@@ -30,6 +30,7 @@ public class BeanEspecProducer01 implements Serializable {
 	}
 
 	@Produces
+	@javax.faces.view.ViewScoped
 	public BeanEspec createInstance() {
 		System.out.println("BeanEspecProducer01.createInstance()");
 
@@ -41,7 +42,7 @@ public class BeanEspecProducer01 implements Serializable {
 	}
 
 	public BeanEspec createInstanceWithImplementation() {
-		System.out.println("BeanEspecProducer01.createInstanceWithImplementation()");
+		System.out.println("BeanEspecProducer01.createInstanceWithImplementation.()");
 
 		return new BeanEspec() {
 

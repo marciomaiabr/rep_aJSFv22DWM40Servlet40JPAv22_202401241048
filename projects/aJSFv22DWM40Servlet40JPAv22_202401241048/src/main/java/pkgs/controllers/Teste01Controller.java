@@ -13,8 +13,8 @@ import pkgs.beansEspec.BeanEspec;
 
 @Named
 // @javax.enterprise.context.RequestScoped
-@javax.faces.view.ViewScoped
-// @javax.enterprise.context.SessionScoped
+//@javax.faces.view.ViewScoped
+@javax.enterprise.context.SessionScoped
 //@javax.enterprise.context.ApplicationScoped
 public class Teste01Controller implements Serializable {
 
@@ -36,6 +36,11 @@ public class Teste01Controller implements Serializable {
 		System.out.println("Teste01Controller.postConstruct()[" + (this) + "]");
 	}
 
+	public String getNome() {
+		System.out.println("     " + "[bean][" + (bean.getClass()) + "][" + bean + "]");
+		return "its ok...";
+	}
+
 	public void method01() {
 		System.out.println("Teste01Controller.method01()[" + (this) + "]");
 		//Pessoa pessoa = new Pessoa();
@@ -43,6 +48,10 @@ public class Teste01Controller implements Serializable {
 		//Pessoa pessoaRetornoSalvar = ps.salvar(pessoa);
 		//System.out.println("     " + "[pessoaRetornoSalvar][" + (pessoaRetornoSalvar.getClass()) + "][" + pessoaRetornoSalvar + "]");
 		System.out.println("     " + "[bean][" + (bean.getClass()) + "][" + bean + "]");
+	}
+
+	public void reloadByControllerMethod() {
+		System.out.println("Teste01Controller.reloadByControllerMethod()[" + (this) + "]");
 	}
 
 	public String gotoPage02ByControllerMethod() {
