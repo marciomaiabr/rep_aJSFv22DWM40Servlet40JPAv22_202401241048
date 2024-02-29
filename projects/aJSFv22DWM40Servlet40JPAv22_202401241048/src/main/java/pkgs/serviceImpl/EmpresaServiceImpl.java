@@ -7,7 +7,6 @@ import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 
 import pkgs.models.Empresa;
-import pkgs.qualifiers.DefaultPersistenceQualifier;
 import pkgs.repositoryEspec.EmpresaRepositoryEspec;
 import pkgs.serviceEspec.EmpresaServiceEspec;
 
@@ -15,7 +14,7 @@ public class EmpresaServiceImpl implements Serializable, EmpresaServiceEspec {
 
 	private static final long serialVersionUID = 20240221040802L;
 
-	@Inject @DefaultPersistenceQualifier
+	@Inject
 	private EmpresaRepositoryEspec ere;
 
 	static {
