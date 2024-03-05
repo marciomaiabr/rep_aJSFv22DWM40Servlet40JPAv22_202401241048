@@ -1,37 +1,53 @@
 package pkgs.utils;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 public class JPAUtil {
 
-	public static EntityManagerFactory criaEntityManagerFactoryWithCreateAuto() {
-		String url = null;
-		String user = null;
-		String password = null;
+	private static String url;
+	private static String username;
+	private static String password;
 
+	static {
 		try {
-			url = Files.readString(Paths.get("C:\\tmp\\p1.txt"));
-			user = Files.readString(Paths.get("C:\\tmp\\p2.txt"));
-			password = Files.readString(Paths.get("C:\\tmp\\p3.txt"));
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			String fileName = "D:\\marciomaia\\java\\eclipse\\202312190443_202401160403_202401230343\\eclipse-workspace\\Servers\\Tomcat v9.0 Server at localhost-config\\context.xml";
+			File file = new File(fileName);
+			Document doc = db.parse(file);
 
-			System.out.println("[url="+url+"][user="+user+"][password.hashCode()="+password.hashCode()+"]");
+			NodeList list = doc.getElementsByTagName("Resource");
+			Element element = (Element) list.item(0);
+
+			url = element.getAttribute("url");
+			username = element.getAttribute("username");
+			password = element.getAttribute("password");
+
+			System.out.println("[url="+url+"][username="+username+"][password.hashCode()="+password.hashCode()+"]");
 		} catch (Exception e) {
 			System.err.println("Falha ao abrir arquivos de configuração [e.getMessage()="+e.getMessage()+"] ...");
 		}
+	}
 
+	public static EntityManagerFactory criaEntityManagerFactoryWithCreateAuto() {
 		EntityManagerFactory emf = null;
 
-		if(url != null && user != null && password != null) {
+		if(url != null && username != null && password != null) {
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
 			map.put("javax.persistence.jdbc.url", url);
-			map.put("javax.persistence.jdbc.user", user);
+			map.put("javax.persistence.jdbc.user", username);
 			map.put("javax.persistence.jdbc.password", password);
 			map.put("javax.persistence.jdbc.driver", "com.mysql.cj.jdbc.Driver");
 			map.put("hibernate.show_sql", "true");
@@ -48,27 +64,13 @@ public class JPAUtil {
 	}
 
 	public static EntityManagerFactory criaEntityManagerFactoryWithCreateNone() {
-		String url = null;
-		String user = null;
-		String password = null;
-
-		try {
-			url = Files.readString(Paths.get("C:\\tmp\\p1.txt"));
-			user = Files.readString(Paths.get("C:\\tmp\\p2.txt"));
-			password = Files.readString(Paths.get("C:\\tmp\\p3.txt"));
-
-			System.out.println("[url="+url+"][user="+user+"][password.hashCode()="+password.hashCode()+"]");
-		} catch (Exception e) {
-			System.err.println("Falha ao abrir arquivos de configuração [e.getMessage()="+e.getMessage()+"] ...");
-		}
-
 		EntityManagerFactory emf = null;
 
-		if(url != null && user != null && password != null) {
+		if(url != null && username != null && password != null) {
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
 			map.put("javax.persistence.jdbc.url", url);
-			map.put("javax.persistence.jdbc.user", user);
+			map.put("javax.persistence.jdbc.user", username);
 			map.put("javax.persistence.jdbc.password", password);
 			map.put("javax.persistence.jdbc.driver", "com.mysql.cj.jdbc.Driver");
 			map.put("hibernate.show_sql", "true");
