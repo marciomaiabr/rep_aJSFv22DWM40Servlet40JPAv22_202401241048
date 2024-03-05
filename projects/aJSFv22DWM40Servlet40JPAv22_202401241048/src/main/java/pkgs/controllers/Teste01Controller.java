@@ -1,7 +1,6 @@
 package pkgs.controllers;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -10,8 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
-import pkgs.models.Pessoa;
-import pkgs.serviceEspec.PessoaServiceEspec;
+import pkgs.managedBeans.Teste01ManagedBean;
 
 @Named
 // @javax.enterprise.context.RequestScoped
@@ -22,8 +20,20 @@ public class Teste01Controller implements Serializable {
 
 	private static final long serialVersionUID = 20240221040801L;
 
-	@Inject
-	private PessoaServiceEspec ps;
+	// @Inject
+	// private Teste01ManagedBean mb1;
+	// @Inject
+	// @Named("Teste01ManagedBean")
+	// private Teste01ManagedBean mb2;
+	// @Inject
+	// @Named("teste01ManagedBean")
+	// private Teste01ManagedBean mb3;
+	// @Inject
+	// @Named("#{teste01ManagedBean}")
+	// private Teste01ManagedBean mb4;
+	// @Inject
+	// @Named("pkgs.managedBeans.Teste01ManagedBean")
+	// private Teste01ManagedBean mb5;
 
 	static {
 		System.out.println("Teste01Controller.static");
@@ -38,6 +48,16 @@ public class Teste01Controller implements Serializable {
 		System.out.println("Teste01Controller.postConstruct()[" + (this) + "]");
 	}
 
+	private String nome;
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 	public String getMethodWithFixedReturn01() {
 		System.out.println("Teste01Controller.methodWithFixedReturn01()[" + (this) + "]");
 		return "the methodWithFixedReturn01...";
@@ -45,11 +65,11 @@ public class Teste01Controller implements Serializable {
 
 	public void method01() {
 		System.out.println("Teste01Controller.method01()[" + (this) + "]");
-		System.out.println("[ps=" + (ps) + "]");
-		Pessoa p01 = new Pessoa("Aninha " + LocalDateTime.now());
-		System.out.println("[p01=" + (p01) + "]");
-		Pessoa p02 = ps.salvar(p01);
-		System.out.println("[p02=" + (p02) + "]");
+		// System.out.println("[" + (mb1) + "]");
+		// System.out.println("[" + (mb2) + "]");
+		// System.out.println("[" + (mb3) + "]");
+		// System.out.println("[" + (mb4) + "]");
+		// System.out.println("[" + (mb5) + "]");
 	}
 
 	public void reloadByControllerMethod() {

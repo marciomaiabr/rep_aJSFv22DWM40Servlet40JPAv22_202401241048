@@ -21,14 +21,17 @@
 			<hr />
 			<br />
 
-			<p><h:outputText value="[teste01Controller.methodWithFixedReturn01=#{teste01Controller.methodWithFixedReturn01}]" /></p>
-			<p><h:outputText value="[teste01Controller.methodWithFixedReturn01=#{teste01Controller.methodWithFixedReturn01}]" /></p>
+			<p><h:inputText value="#{teste01ManagedBean.nome}" /><h:outputText value="#{teste01ManagedBean.nome}" /></p>
+			<p><h:inputText value="#{teste02ManagedBean.nome}" /><h:outputText value="#{teste02ManagedBean.nome}" /></p>
+			<p><h:inputText value="#{teste01Controller.nome}" /><h:outputText value="#{teste01Controller.nome}" /></p>
 
 			<br />
 			<hr />
 			<br />
 
-			<p><h:commandButton value="method01..." action="#{teste01Controller.method01}" /></p>
+			<p><h:commandButton value="teste01ManagedBean.method01..." action="#{teste01ManagedBean.method01}" /></p>
+			<br />
+			<p><h:commandButton value="teste01Controller.method01..." action="#{teste01Controller.method01}" /></p>
 			<br />
 			<p><h:commandButton value="reloadByControllerMethod..." action="#{teste01Controller.reloadByControllerMethod}" /></p>
 			<br />
