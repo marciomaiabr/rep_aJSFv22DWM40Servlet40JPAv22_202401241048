@@ -4,7 +4,8 @@
 	version="1.1" bean-discovery-mode="all">
 
 	<interceptors>
-		<class>pkgs.interceptors.TransactionalInterceptor</class>
+		<class>pkgs.interceptors.TransactionalInterceptor01</class>
+		<class>pkgs.interceptors.TransactionalInterceptor02</class>
 	</interceptors>
 
 </beans>

@@ -1,14 +1,11 @@
 package pkgs.serviceImpl;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 
 import pkgs.models.Pessoa;
-import pkgs.repositoryEspec.PessoaRepositoryEspec;
+import pkgs.repositoryJPA.PessoaRepositoryJPA;
 import pkgs.serviceEspec.PessoaServiceEspec;
 
 public class PessoaServiceImpl implements Serializable, PessoaServiceEspec {
@@ -16,9 +13,9 @@ public class PessoaServiceImpl implements Serializable, PessoaServiceEspec {
 	private static final long serialVersionUID = 20240221040802L;
 
 	@Inject
-	private PessoaRepositoryEspec pre;
+	private PessoaRepositoryJPA pr;
 
-	static {
+	/*static {
 		System.out.println("PessoaServiceImpl.static");
 	}
 
@@ -29,63 +26,26 @@ public class PessoaServiceImpl implements Serializable, PessoaServiceEspec {
 	@PostConstruct
 	public void postConstruct() {
 		System.out.println("PessoaServiceImpl.postConstruct()[" + (this) + "]");
-	}
+	}*/
 
-	@Override
-	public Pessoa buscar(Integer idPessoa) {
-		System.out.println("PessoaServiceImpl.buscar()[" + (this) + "]");
-
-		System.out.println("     " + "[pre][" + (pre != null ? pre.getClass().toString() : "") + "][" + pre + "]");
-
-		Pessoa pessoa = pre.get(idPessoa);
-
-		if (pessoa != null)
-			System.out.println("     " + "[pessoa][" + (pessoa.getClass()) + "][" + pessoa + "]");
-		else
-			System.out.println("     " + "[pessoa][" + pessoa + "]");
-
-		return pessoa;
-	}
-
-	@Override
-	public List<Pessoa> listar() {
-		System.out.println("PessoaServiceImpl.listar()[" + (this) + "]");
-
-		System.out.println("     " + "[pre][" + (pre != null ? pre.getClass().toString() : "") + "][" + pre + "]");
-		return pre.list();
-	}
-
-	@Override
 	public Pessoa salvar(Pessoa pessoa) {
 		System.out.println("PessoaServiceImpl.salvar()[" + (this) + "]");
 
-		System.out.println("     " + "[pre][" + (pre != null ? pre.getClass().toString() : "") + "][" + pre + "]");
+		pr.saveA01(pessoa);
+		pr.saveA02(pessoa);
+		pr.saveA03(pessoa);
 
-		if (pessoa != null)
-			System.out.println("     " + "[pessoa][" + (pessoa.getClass()) + "][" + pessoa + "]");
-		else
-			System.out.println("     " + "[pessoa][" + pessoa + "]");
+		// pr.save0201(pessoa);
+		// pr.save0202(pessoa);
+		// pr.save0203(pessoa);
 
-		Pessoa pessoaRetornoSave = pre.save(pessoa);
+		// System.out.println("     " + "[pessoaRetornoSave][" + pessoaRetornoSave + "]");
+		// System.out.println("     " + "[pessoaRetornoSave02][" + pessoaRetornoSave02 + "]");
 
-		if (pessoaRetornoSave != null)
-			System.out.println("     " + "[pessoaRetornoSave][" + (pessoaRetornoSave.getClass()) + "][" + pessoaRetornoSave + "]");
-		else
-			System.out.println("     " + "[pessoaRetornoSave][" + pessoaRetornoSave + "]");
-
-		return pessoaRetornoSave;
+		return null;
 	}
 
-	@Override
-	public void apagar(Pessoa pessoa) {
-		System.out.println("PessoaServiceImpl.apagar()[" + (this) + "]");
-
-		System.out.println("     " + "[pre][" + (pre != null ? pre.getClass().toString() : "") + "][" + pre + "]");
-
-		pre.delete(pessoa);
-	}
-
-	@PreDestroy
+	/*@PreDestroy
 	public void preDestroy() {
 		System.out.println("PessoaServiceImpl.preDestroy()[" + (this) + "]");
 	}
@@ -95,6 +55,6 @@ public class PessoaServiceImpl implements Serializable, PessoaServiceEspec {
 	protected void finalize() throws Throwable {
 		System.out.println("PessoaServiceImpl.finalize()[" + (this) + "]");
 		super.finalize();
-	}
+	}*/
 
 }

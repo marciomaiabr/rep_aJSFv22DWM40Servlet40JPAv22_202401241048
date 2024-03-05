@@ -66,10 +66,12 @@ public class JSFUtil {
 						listCDIBeansWithOutInstance.add("[bean=" + (bean) + "]");
 					} else {
 						StringBuffer sb = new StringBuffer();
-						sb.append("[bean=" + (bean) + "]");
-						sb.append("[creationalContext=" + (creationalContext) + "]");
-						sb.append("[context=" + (context) + "]");
-						sb.append("[beanInstance=" + (instance) + "]");
+						sb.append("\n");
+						sb.append("\n[bean=" + (bean) + "]");
+						sb.append("\n[creationalContext=" + (creationalContext) + "]");
+						sb.append("\n[context=" + (context) + "]");
+						sb.append("\n[beanInstance=" + (instance) + "]");
+						sb.append("\n");
 						listCDIBeansWithInstance.add(sb.toString());
 					}
 				}

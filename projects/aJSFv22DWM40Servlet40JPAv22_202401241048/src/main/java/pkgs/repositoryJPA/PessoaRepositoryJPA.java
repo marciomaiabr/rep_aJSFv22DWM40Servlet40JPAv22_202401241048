@@ -1,25 +1,22 @@
 package pkgs.repositoryJPA;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 
 import pkgs.models.Pessoa;
-import pkgs.repositoryEspec.PessoaRepositoryEspec;
 
-public class PessoaRepositoryJPA implements Serializable, PessoaRepositoryEspec {
+public class PessoaRepositoryJPA implements Serializable {
 
 	private static final long serialVersionUID = 20240221040803L;
 
 	@Inject
-	private EntityManager em;
+	private EntityManager emP;
+	// @Inject
+	// private EntityManager emS;
 
-	static {
+	/*static {
 		System.out.println("PessoaRepositoryJPA.static");
 	}
 
@@ -30,70 +27,28 @@ public class PessoaRepositoryJPA implements Serializable, PessoaRepositoryEspec 
 	@PostConstruct
 	public void postConstruct() {
 		System.out.println("PessoaRepositoryJPA.postConstruct()[" + (this) + "]");
+	}*/
+
+	public Pessoa saveA01(Pessoa pessoa) {
+		System.out.println("PessoaRepositoryJPA.saveA01()[" + (this) + "]");
+		System.out.println("     " + "[saveA01][emP][" + (emP.getClass()) + "][" + emP + "][" + emP.getTransaction() + "]");
+		return emP.merge(new Pessoa("[saveA01][emP][" + (emP.getClass()) + "][" + emP + "][" + emP.getTransaction() + "]"));
 	}
 
-	@Override
-	public Pessoa get(Integer idPessoa) {
-		System.out.println("PessoaRepositoryJPA.get()[" + (this) + "]");
-
-		System.out.println("     " + "[em][" + (em != null ? em.getClass().toString() : "") + "][" + em + "]");
-
-		Pessoa pessoa = em.find(Pessoa.class, idPessoa);
-
-		if (pessoa != null)
-			System.out.println("     " + "[pessoa][" + (pessoa.getClass()) + "][" + pessoa + "]");
-		else
-			System.out.println("     " + "[pessoa][" + pessoa + "]");
-
-		return pessoa;
+	public Pessoa saveA02(Pessoa pessoa) {
+		System.out.println("PessoaRepositoryJPA.saveA02()[" + (this) + "]");
+		System.out.println("     " + "[saveA02][emP][" + (emP.getClass()) + "][" + emP + "][" + emP.getTransaction() + "]");
+		return emP.merge(new Pessoa("[saveA02][emP][" + (emP.getClass()) + "][" + emP + "][" + emP.getTransaction() + "]"));
+		// throw new RuntimeException("TesteMM...");
 	}
 
-	@Override
-	public List<Pessoa> list() {
-		System.out.println("PessoaRepositoryJPA.list()[" + (this) + "]");
-
-		System.out.println("     " + "[em][" + (em != null ? em.getClass().toString() : "") + "][" + em + "]");
-
-		return em.createQuery("from Pessoa", Pessoa.class).getResultList();
+	public Pessoa saveA03(Pessoa pessoa) {
+		System.out.println("PessoaRepositoryJPA.saveA03()[" + (this) + "]");
+		System.out.println("     " + "[saveA03][emP][" + (emP.getClass()) + "][" + emP + "][" + emP.getTransaction() + "]");
+		return emP.merge(new Pessoa("[saveA03][emP][" + (emP.getClass()) + "][" + emP + "][" + emP.getTransaction() + "]"));
 	}
 
-	@Override
-	@Transactional
-	public Pessoa save(Pessoa pessoa) {
-		System.out.println("PessoaRepositoryJPA.save1()[" + (this) + "]");
-
-		System.out.println("     " + "[em][" + (em != null ? em.getClass().toString() : "") + "][" + em + "]");
-
-		if (pessoa != null)
-			System.out.println("     " + "[pessoa][" + (pessoa.getClass()) + "][" + pessoa + "]");
-		else
-			System.out.println("     " + "[pessoa][" + pessoa + "]");
-
-		Pessoa pessoaRetornoMerge = em.merge(pessoa);
-
-		if (pessoaRetornoMerge != null)
-			System.out.println("     " + "[pessoaRetornoMerge][" + (pessoaRetornoMerge.getClass()) + "][" + pessoaRetornoMerge + "]");
-		else
-			System.out.println("     " + "[pessoaRetornoMerge][" + pessoaRetornoMerge + "]");
-
-		return pessoaRetornoMerge;
-	}
-
-	@Override
-	public void delete(Pessoa pessoa) {
-		System.out.println("PessoaRepositoryJPA.delete()[" + (this) + "]");
-
-		System.out.println("     " + "[em][" + (em != null ? em.getClass().toString() : "") + "][" + em + "]");
-
-		if (pessoa != null)
-			System.out.println("     " + "[pessoa][" + (pessoa.getClass()) + "][" + pessoa + "]");
-		else
-			System.out.println("     " + "[pessoa][" + pessoa + "]");
-
-		em.remove(pessoa);
-	}
-
-	@PreDestroy
+	/*@PreDestroy
 	public void preDestroy() {
 		System.out.println("PessoaRepositoryJPA.preDestroy()[" + (this) + "]");
 	}
@@ -103,6 +58,6 @@ public class PessoaRepositoryJPA implements Serializable, PessoaRepositoryEspec 
 	protected void finalize() throws Throwable {
 		System.out.println("PessoaRepositoryJPA.finalize()[" + (this) + "]");
 		super.finalize();
-	}
+	}*/
 
 }

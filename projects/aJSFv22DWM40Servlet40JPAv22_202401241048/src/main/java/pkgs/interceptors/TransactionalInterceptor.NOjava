@@ -10,10 +10,12 @@ import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.transaction.Transactional;
+
+import pkgs.qualifiers.MyTransactional01;
+import pkgs.utils.CDIServiceLocator;
 
 @Interceptor
-@Transactional
+@MyTransactional01
 public class TransactionalInterceptor implements Serializable {
 
 	private static final long serialVersionUID = 20240228104000L;
@@ -21,7 +23,7 @@ public class TransactionalInterceptor implements Serializable {
 	@Inject
 	private EntityManager entityManager;
 
-	static {
+	/*static {
 		System.out.println("TransactionalInterceptor.static");
 	}
 
@@ -32,11 +34,27 @@ public class TransactionalInterceptor implements Serializable {
 	@PostConstruct
 	public void postConstruct() {
 		System.out.println("TransactionalInterceptor.postConstruct()[" + (this) + "]");
-	}
+	}*/
 
 	@AroundInvoke
+	@MyTransactional01
 	private Object invoke(InvocationContext context) throws Exception {
 		System.out.println("TransactionalInterceptor.invoke()");
+
+		// EntityManager entityManager = CDIServiceLocator.getBean(EntityManager.class);
+
+		System.out.println("[entityManager=" + (entityManager) + "]");
+
+		Object [] objects = context.getParameters();
+		Object [] newObjects = new Object [objects.length+1];
+		int i = 0;
+		System.out.println("[objects]");
+		for(Object object : objects) {
+			System.out.println("[object=" + (object) + "]");
+			newObjects[i] = object;
+		}
+		newObjects[i+1] = entityManager;
+		// context.setParameters(newObjects);
 
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		System.out.println("[entityTransaction=" + (entityTransaction) + "]");
@@ -44,7 +62,9 @@ public class TransactionalInterceptor implements Serializable {
 		boolean criador = false;
 
 		try {
+			System.out.println("TransactionalInterceptor02.invoke().try");
 			if (!entityTransaction.isActive()) {
+				System.out.println("TransactionalInterceptor02.invoke().try.if");
 				entityTransaction.begin();
 				entityTransaction.rollback();
 
@@ -55,20 +75,24 @@ public class TransactionalInterceptor implements Serializable {
 
 			return context.proceed();
 		} catch (Exception e) {
+			System.out.println("TransactionalInterceptor02.invoke().catch");
 			if (entityTransaction != null && criador) {
+				System.out.println("TransactionalInterceptor02.invoke().catch.rollback");
 				entityTransaction.rollback();
 			}
 
 			throw e;
 		} finally {
+			System.out.println("TransactionalInterceptor02.invoke().finally");
 			if (entityTransaction != null && entityTransaction.isActive() && criador) {
+				System.out.println("TransactionalInterceptor02.invoke().commit");
 				entityTransaction.commit();
 			}
 
 		}
 	}
 
-	@PreDestroy
+	/*@PreDestroy
 	public void preDestroy() {
 		System.out.println("TransactionalInterceptor.preDestroy()[" + (this) + "]");
 	}
@@ -78,6 +102,6 @@ public class TransactionalInterceptor implements Serializable {
 	protected void finalize() throws Throwable {
 		System.out.println("TransactionalInterceptor.finalize()[" + (this) + "]");
 		super.finalize();
-	}
+	}*/
 
 }

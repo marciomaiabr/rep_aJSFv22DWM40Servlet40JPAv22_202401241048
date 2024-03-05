@@ -1,7 +1,5 @@
 package pkgs.phaseListeners;
 
-import java.util.List;
-
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
@@ -30,9 +28,9 @@ public class PhaseListener01 implements PhaseListener {
 	}
 
 	public void afterPhase(PhaseEvent event) {
-		log.info("FINALIZANDO FASE: " + event.getPhaseId());
+		log.info("[FINALIZANDO FASE]" + "[" + (event.getPhaseId()) + "]");
 		if (event.getPhaseId() == PhaseId.RENDER_RESPONSE)
-			JSFUtil.listCDIBeans().forEach(log::info);;
+			JSFUtil.listCDIBeans().forEach(log::info);
 	}
 
 }
