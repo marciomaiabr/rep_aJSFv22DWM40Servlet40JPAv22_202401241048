@@ -16,6 +16,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.naming.InitialContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class JSFUtil {
 
@@ -88,6 +89,17 @@ public class JSFUtil {
 		listCDIBeans.addAll(listCDIBeansWithOutInstance);
 
 		return listCDIBeans;
+	}
+
+	public void invalidateSession() {
+		System.out.println("JSFUtil.invalidateSession()[" + (this) + "]");
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
+		// return "Page02.xhtml?faces-redirect=true";
 	}
 
 }
