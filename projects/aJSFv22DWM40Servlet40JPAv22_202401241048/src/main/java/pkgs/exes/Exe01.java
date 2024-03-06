@@ -33,7 +33,7 @@ public class Exe01 {
 		EntityTransaction et = null;
 
 		try {
-			emf = JPAUtil.criaEntityManagerFactoryWithCreateNone();
+			emf = JPAUtil.criaEntityManagerFactoryWithCreateAuto();
 			System.out.println("[emf=" + (emf) + "]");
 
 			em = emf.createEntityManager();
