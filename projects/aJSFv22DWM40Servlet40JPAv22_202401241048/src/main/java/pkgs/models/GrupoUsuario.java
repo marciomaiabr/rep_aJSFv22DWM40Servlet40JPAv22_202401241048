@@ -53,7 +53,7 @@ public class GrupoUsuario implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + "]";
+		return "GrupoUsuario [id=" + id + ", nome=" + nome + "]";
 	}
 
 	public GrupoUsuario(String nome) {
