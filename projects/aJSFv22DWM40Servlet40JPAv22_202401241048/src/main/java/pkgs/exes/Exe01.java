@@ -1,10 +1,16 @@
 package pkgs.exes;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import pkgs.utils.JPAUtil;
+import pkgs.utils.JSEUtil;
 
 public class Exe01 {
 
@@ -43,6 +49,32 @@ public class Exe01 {
 			System.out.println("[et=" + (et) + "]");
 
 			et.begin();
+
+		    try {
+		    	System.out.println("Initial Dml's Path = [" + (JSEUtil.getInitialDmlsPath()) + "]");
+
+		    	File[] files = JSEUtil.getInitialDmlsFiles();
+
+		    	System.out.println("Files to execute:");
+		    	for(File file : files) {
+		    		System.out.println("     " + "["+file+"]");
+		    	}
+
+		    	System.out.println("Executing files...");
+		    	for(File file : files) {
+		    		System.out.println("     " + "["+file+"]");
+		    		List<String> sqls = Files.readAllLines(file.toPath());
+				    for(String sql : sqls) {
+				    	if(sql.trim().equals(""))
+				    		continue;
+				    	System.out.println("     " + "     " + "[sql="+sql+"]");
+				    	Query query = em.createNativeQuery(sql);
+				    	System.out.println("[query.executeUpdate()=" + (query.executeUpdate()) + "]");
+				    }
+		    	}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
 			et.commit();
 		} catch (Exception e) {
