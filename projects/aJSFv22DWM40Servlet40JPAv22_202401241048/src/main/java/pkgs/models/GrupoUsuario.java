@@ -1,12 +1,14 @@
 package pkgs.models;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class GrupoUsuario implements Serializable {
@@ -22,6 +24,9 @@ public class GrupoUsuario implements Serializable {
 	private Integer id;
 	private String nome;
 
+	@ManyToMany(mappedBy = "gruposUsuario")
+	private List<Usuario> usuarios;
+
 	public Integer getId() {
 		return id;
 	}
@@ -36,6 +41,14 @@ public class GrupoUsuario implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 
 	@Override
