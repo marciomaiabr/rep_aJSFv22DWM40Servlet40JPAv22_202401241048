@@ -6,6 +6,8 @@ import java.nio.file.Path;
 
 public class JSEUtil {
 
+	private static final String INITIAL_DML = "//sqls//initial//dml";
+
 	public static URL getResource() {
     	ClassLoader classLoader = JSEUtil.class.getClassLoader();
     	URL resourceDirectory = classLoader.getResource("META-INF");
@@ -13,13 +15,13 @@ public class JSEUtil {
 	}
 
 	public static Path getInitialDmlsPath() {
-		File directory = new File(getResource().getPath()+"//sqls//initial//dml");
+		File directory = new File(getResource().getPath()+INITIAL_DML);
 		Path path = directory.toPath();
 		return path;
 	}
 
 	public static File[] getInitialDmlsFiles() {
-		File directorys = new File(getResource().getPath()+"//sqls//initial//dml");
+		File directorys = new File(getResource().getPath()+INITIAL_DML);
 		return directorys.listFiles();
 	}
 
