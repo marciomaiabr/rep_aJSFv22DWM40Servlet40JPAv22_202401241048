@@ -55,7 +55,10 @@ public class JPAUtil {
 			map.put("use_sql_comments", "true");
 			map.put("hibernate.hbm2ddl.auto", "create");
 			//chama o "sql-load-script-source" somente quando "hibernate.hbm2ddl.auto" é "create"
-			map.put("javax.persistence.sql-load-script-source", "META-INF/sqls/Inserts.sql");
+			//quando especificado vários arquivos o jpa executa somente o último, creio eu q ele sobrepõe o par chave/valor do HashMap,
+			//checar se qdo uma PU estática o mesmo ocorre
+			//map.put("javax.persistence.sql-load-script-source", "META-INF/sqls/InsertUsuario.sql");
+			//map.put("javax.persistence.sql-load-script-source", "META-INF/sqls/InsertGrupoUsuario.sql");
 			map.put("hibernate.archive.autodetection", "class");
 			emf = Persistence.createEntityManagerFactory("myPU", map);
 		}
