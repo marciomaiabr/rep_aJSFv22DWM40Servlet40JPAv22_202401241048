@@ -23,6 +23,8 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
+	private String email;
+	private String senha;
 
 	@ManyToMany
 	private List<GrupoUsuario> gruposUsuario;
@@ -43,6 +45,22 @@ public class Usuario implements Serializable {
 		this.nome = nome;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 	public List<GrupoUsuario> getGruposUsuario() {
 		return gruposUsuario;
 	}
@@ -53,18 +71,22 @@ public class Usuario implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + "]";
+		return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + "]";
 	}
 
-	public Usuario(String nome) {
+	public Usuario(String nome, String email, String senha) {
 		super();
 		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
 	}
 
-	public Usuario(Integer id, String nome) {
+	public Usuario(Integer id, String nome, String email, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
 	}
 
 	@Override
