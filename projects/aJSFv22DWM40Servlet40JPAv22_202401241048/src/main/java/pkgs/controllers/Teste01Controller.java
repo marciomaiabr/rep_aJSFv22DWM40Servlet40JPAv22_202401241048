@@ -30,45 +30,6 @@ public class Teste01Controller implements Serializable {
 		System.out.println("Teste01Controller.postConstruct()[" + (this) + "]");
 	}
 
-	public String getMethodWithFixedReturn01() {
-		System.out.println("Teste01Controller.methodWithFixedReturn01()[" + (this) + "]");
-		return "the methodWithFixedReturn01...";
-	}
-
-	public void method01() {
-		System.out.println("Teste01Controller.method01()[" + (this) + "]");
-	}
-
-	public void reloadByControllerMethod() {
-		System.out.println("Teste01Controller.reloadByControllerMethod()[" + (this) + "]");
-	}
-
-	public String gotoPage02ByControllerMethod() {
-		System.out.println("Teste01Controller.gotoPage02ByControllerMethod()[" + (this) + "]");
-		return "Page02";
-	}
-
-	public void invalidateSession() {
-		System.out.println("Teste01Controller.invalidateSession()[" + (this) + "]");
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-
-		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-		if (session != null) {
-			session.invalidate();
-		}
-	}
-
-	public String invalidateSessionWithOtherPage() {
-		System.out.println("Teste01Controller.invalidateSessionWithOtherPage()[" + (this) + "]");
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-
-		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-		if (session != null) {
-			session.invalidate();
-		}
-		return "Page02.xhtml?faces-redirect=true";
-	}
-
 	@PreDestroy
 	public void preDestroy() {
 		System.out.println("Teste01Controller.preDestroy()[" + (this) + "]");
