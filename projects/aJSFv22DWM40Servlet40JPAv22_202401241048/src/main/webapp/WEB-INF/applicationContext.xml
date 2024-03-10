@@ -5,18 +5,31 @@
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security-3.1.xsd">
-           
-	<http auto-config="true">
-		<intercept-url pattern="/**" access="ROLE_ADMINISTRADORES" />
+
+	<!--para qdo o caminho vem de um componente jsf , "h:outputScript" , por exemplo -->
+	<http pattern="/javax.faces.resource/**" security="none" />
+	<!--para qdo o caminho vem de um componente html , "<script" , por exemplo -->
+	<http pattern="/resources/**" security="none" />
+	<!--uma página q eu não quero que seja gerênciada pelo spring-security -->
+	<http pattern="/Index.xhtml" security="none" />
+
+	<http auto-config="true" use-expressions="true">
+
+		<intercept-url pattern="/LogadoOn01.xhtml" access="isAuthenticated()"/>
+		<intercept-url pattern="/LogadoOn02.xhtml" access="hasAnyRole('ADMINISTRADORES')"/>
+		<intercept-url pattern="/LogadoOn03.xhtml" access="hasAnyRole('ADMINISTRADORES','VENDEDORES','AUXILIARES')"/>
+
+		<intercept-url pattern="/**" access="denyAll" />
+
 	</http>
-	
+
 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
-				<user name="joao" password="joao" authorities="ROLE_VENDEDORES" />
-				<user name="manoel" password="manoel" authorities="ROLE_ADMINISTRADORES" />
+				<user name="joao" password="joao" authorities="VENDEDORES" />
+				<user name="manoel" password="manoel" authorities="ADMINISTRADORES" />
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
-           
+
 </beans:beans>
