@@ -15,7 +15,7 @@ import pkgs.models.Usuario;
 import pkgs.repositoryEspec.UsuarioRepositoryEspec;
 import pkgs.utils.CDIServiceLocator;
 
-public class UsuarioLogadoDetailsService implements Serializable , UserDetailsService {
+public class MyUserDetailsService implements Serializable , UserDetailsService {
 
 	private static final long serialVersionUID = 20240310070601L;
 
@@ -25,7 +25,7 @@ public class UsuarioLogadoDetailsService implements Serializable , UserDetailsSe
 		Usuario usuario = ur.porEmail(email);
 
 		if (usuario != null) {
-			UserDetails userDetails = new UsuarioLogado(usuario, getAuthorities(usuario));
+			UserDetails userDetails = new MyUserDetailsUser(usuario, getAuthorities(usuario));
 			return userDetails;
 		}
 
