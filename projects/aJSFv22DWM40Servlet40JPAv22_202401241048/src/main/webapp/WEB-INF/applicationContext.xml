@@ -12,8 +12,10 @@
 	<http pattern="/javax.faces.resource/**" security="none" />
 	<!--para qdo o caminho vem de um componente html , "<script" , por exemplo -->
 	<http pattern="/resources/**" security="none" />
-	<!--uma página q eu não quero que seja gerênciada pelo spring-security -->
+	<!--páginas q eu não quero que seja gerênciada pelo spring-security -->
 	<http pattern="/Index.xhtml" security="none" />
+	<http pattern="/Logar.xhtml" security="none" />
+	<http pattern="/Erro.xhtml" security="none" />
 
 	<http auto-config="true" use-expressions="true">
 
@@ -22,6 +24,12 @@
 		<intercept-url pattern="/LogadoOn03.xhtml" access="hasAnyRole('ADMINISTRADORES','VENDEDORES','AUXILIARES')"/>
 
 		<intercept-url pattern="/**" access="denyAll" />
+
+		<form-login
+			login-page="/Logar.xhtml" authentication-failure-url="/Logar.xhtml?invalid=true" default-target-url="/"
+			always-use-default-target="true"
+		/>
+		<logout logout-url="/j_spring_security_logout" invalidate-session="true" />
 
 	</http>
 
