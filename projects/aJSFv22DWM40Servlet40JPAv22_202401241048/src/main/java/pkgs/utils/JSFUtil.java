@@ -21,6 +21,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
+import pkgs.models.Usuario;
+import pkgs.securitys.MyUserDetailsUser;
+
 public class JSFUtil {
 
 	public static HttpServletRequest getRequest() {
@@ -129,6 +134,34 @@ public class JSFUtil {
 			session.invalidate();
 		}
 		// return "Page02.xhtml?faces-redirect=true";
+	}
+
+	public static Usuario buscaUsuarioLogado() {
+		System.out.println("JSFUtil.buscaUsuarioLogado()");
+
+		Principal principal = JSFUtil.getUserPrincipal();
+		System.out.println("[principal=" + (principal) + "]");
+		if (principal != null) {
+			if (principal.getClass().toString().toLowerCase().indexOf("springframework")>=0) {
+				UsernamePasswordAuthenticationToken upat = (UsernamePasswordAuthenticationToken) JSFUtil.getUserPrincipal();
+				System.out.println("[upat=" + (upat) + "]");
+				if (upat != null) {
+					if (upat.getPrincipal() != null) {
+						MyUserDetailsUser mudu = (MyUserDetailsUser) upat.getPrincipal();
+						System.out.println("[mudu=" + (mudu) + "]");
+						if (mudu != null) {
+							Usuario usuario = mudu.getUsuario();
+							System.out.println("[usuario=" + (usuario) + "]");
+							if (usuario != null) {
+								return usuario;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return null;
 	}
 
 }
