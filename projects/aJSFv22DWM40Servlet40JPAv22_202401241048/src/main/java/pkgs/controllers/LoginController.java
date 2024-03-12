@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pkgs.models.Usuario;
 import pkgs.utils.JSFUtil;
 
 @Named
@@ -59,6 +60,15 @@ public class LoginController implements Serializable {
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/j_spring_security_check");
 		requestDispatcher.forward(request, response);
 		facesContext.responseComplete();
+	}
+	public Usuario getUsuarioLogado() {
+		System.out.println("LoginController.getUsuarioLogado()");
+		return JSFUtil.buscaUsuarioLogado();
+	}
+
+	public boolean isLogado() {
+		System.out.println("LoginController.isLogado()");
+		return getUsuarioLogado() != null;
 	}
 
 	public void logOff() {
