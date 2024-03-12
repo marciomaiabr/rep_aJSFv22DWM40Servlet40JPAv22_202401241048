@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
 
 import pkgs.utils.JSFUtil;
 
@@ -29,6 +30,10 @@ public class Teste01ServletFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		System.out.println("Teste01ServletFilter.doFilter()");
+
+		String url = ((HttpServletRequest)request).getRequestURL().toString();
+		String queryString = ((HttpServletRequest)request).getQueryString();
+		System.out.println("[url=" + (url) + "][queryString=" + (queryString) + "]");
 
 		chain.doFilter(request, response);
 
