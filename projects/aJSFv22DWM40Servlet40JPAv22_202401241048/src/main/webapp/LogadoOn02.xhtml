@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>LogadoOn02...</title>
+
+		<h:outputStylesheet library="css" name="css01.css" />
+		<link rel="stylesheet" href="resources/css/css02.css" />
+
+		<h:outputScript library="js" name="js01.js" />
+		<script src="resources/js/js02.js" />
+
+	</h:head>
+	<h:body>
+		<h:form id="frm1">
+
+			<br />
+			<h1>LogadoOn02.xhtml...</h1>
+			<br />
+			<h:outputText value="XHTMLVersion: 20240222 0532" />
+
+			<hr />
+
+			<p>
+				<h:outputText value="#{loginController.usuarioLogado.nome}" rendered="#{loginController.logado}" />
+			</p>
+
+			<p>
+				<h:commandButton value="Atualiza..." >
+					<f:ajax render="outputText01" />
+				</h:commandButton>
+				<h:outputText id="outputText01" value="#{teste01Controller.atualLocalDateTime}" />
+			</p>
+
+			<br />
+
+			<p>
+				<h:button value="h:button mostraMsg01..." onclick="mostraMsg01();" />
+				<h:button value="h:button mostraMsg02..." onclick="mostraMsg02();" />
+			</p>
+			<p>
+				<button onclick="mostraMsg01();" >button mostraMsg01...</button>
+				<button onclick="mostraMsg02();" >button mostraMsg02...</button>
+			</p>
+
+			<br />
+
+			<p>
+				<h:commandButton value="goLogadoOff01..." action="#{teste01Controller.goLogadoOff01}" />
+				<h:commandButton value="goLogadoOff02..." action="#{teste01Controller.goLogadoOff02}" />
+				<h:commandButton value="goLogadoOn01..." action="#{teste01Controller.goLogadoOn01}" />
+				<h:commandButton value="goLogadoOn02..." action="#{teste01Controller.goLogadoOn02}" />
+			</p>
+			<p>
+				<h:link value="h:link LogadoOff01..." outcome="LogadoOff01" />
+				<h:link value="h:link LogadoOff02..." outcome="LogadoOff02" />
+				<h:link value="h:link LogadoOn01..." outcome="LogadoOn01" />
+				<h:link value="h:link LogadoOn02..." outcome="LogadoOn02" />
+			</p>
+			<p>
+				<a href="LogadoOff01.xhtml" >a LogadoOff01</a>
+				<a href="LogadoOff02.xhtml" >a LogadoOff02</a>
+				<a href="LogadoOn01.xhtml" >a LogadoOn01</a>
+				<a href="LogadoOn02.xhtml" >a LogadoOn02</a>
+			</p>
+
+			<br />
+
+			<p><span class="corAzul">-----</span><span class="corVerde">-----</span></p>
+
+			<br />
+
+			<p><h:graphicImage library="images" name="ReiCoxinhas.jpg" /><img src="resources/images/Marmita.jpg" /></p>
+
+		</h:form>
+	</h:body>
+</html>

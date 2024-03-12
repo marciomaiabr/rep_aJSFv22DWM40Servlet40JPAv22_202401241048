@@ -1,6 +1,7 @@
 package pkgs.controllers;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -26,6 +27,26 @@ public class Teste01Controller implements Serializable {
 	@PostConstruct
 	public void postConstruct() {
 		System.out.println("Teste01Controller.postConstruct()[" + (this) + "]");
+	}
+
+	public LocalDateTime getAtualLocalDateTime() {
+		return LocalDateTime.now();
+	}
+
+	public String goLogadoOff01() {
+		return "LogadoOff01";
+	}
+
+	public String goLogadoOff02() {
+		return "LogadoOff02?faces-redirect=true";
+	}
+
+	public String goLogadoOn01() {
+		return "LogadoOn01";
+	}
+
+	public String goLogadoOn02() {
+		return "LogadoOn02";
 	}
 
 	@PreDestroy
