@@ -1,5 +1,6 @@
 package pkgs.utils;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -11,11 +12,13 @@ import javax.enterprise.inject.Any;
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.util.AnnotationLiteral;
+import javax.faces.application.FacesMessage;
 import javax.faces.application.ProjectStage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.naming.InitialContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class JSFUtil {
@@ -26,6 +29,32 @@ public class JSFUtil {
 		HttpServletRequest httpServletRequest = (HttpServletRequest) externalContext.getRequest();
 
 		return httpServletRequest;
+	}
+
+	public static HttpServletResponse getResponse() {
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = facesContext.getExternalContext();
+		HttpServletResponse httpServletResponse = (HttpServletResponse) externalContext.getResponse();
+
+		return httpServletResponse;
+	}
+
+	public static FacesContext getFacesContext() {
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+
+		return facesContext;
+	}
+
+	public static ExternalContext getExternalContext() {
+		return getFacesContext().getExternalContext();
+	}
+
+	public static Principal getUserPrincipal() {
+		return getExternalContext().getUserPrincipal();
+	}
+
+	public static void addErrorMessageGlobal(String message) {
+		getFacesContext().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, message));
 	}
 
 	public static ProjectStage getProjectStage() {
@@ -91,8 +120,8 @@ public class JSFUtil {
 		return listCDIBeans;
 	}
 
-	public void invalidateSession() {
-		System.out.println("JSFUtil.invalidateSession()[" + (this) + "]");
+	public static void invalidateSession() {
+		System.out.println("JSFUtil.invalidateSession()");
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
