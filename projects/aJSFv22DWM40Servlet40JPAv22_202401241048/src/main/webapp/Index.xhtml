@@ -21,11 +21,15 @@
 			<br />
 			<h1>Index.xhtml...</h1>
 			<br />
-			<h:outputText value="XHTMLVersion: 20240222 0532" />
+			<h:outputText value="XHTMLVersion: 20240312 0845" />
 
 			<hr />
 
 			<br />
+
+			<p>
+				<h:outputText value="#{loginController.usuarioLogado.nome}" rendered="#{loginController.logado}" />
+			</p>
 
 			<p>
 				<h:commandButton value="Atualiza..." >
