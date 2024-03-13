@@ -26,9 +26,9 @@ public class MyUserDetailsService implements Serializable , UserDetailsService {
 
 		if (usuario != null) {
 			return new MyUserDetailsUser(usuario, getAuthorities(usuario));
+		} else {
+			throw new UsernameNotFoundException("Usuário não encontrado.");
 		}
-
-		return null;
 	}
 
 	private Collection<? extends GrantedAuthority> getAuthorities(Usuario usuario) {
