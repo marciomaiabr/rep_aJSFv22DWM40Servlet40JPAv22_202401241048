@@ -42,6 +42,8 @@ public class Teste01Controller implements Serializable {
 	}
 
 	public String goLogadoOn01() {
+		//qdo não usa "faces-redirect=true" ele redireciona para o xhtml e não dá erro de acesso
+		//só dá o erro qdo exeuta alguma ação na página
 		return "LogadoOn01";
 	}
 
