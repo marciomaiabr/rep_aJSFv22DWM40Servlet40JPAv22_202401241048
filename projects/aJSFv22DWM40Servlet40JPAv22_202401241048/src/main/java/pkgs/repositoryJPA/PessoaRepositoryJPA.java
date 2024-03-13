@@ -1,22 +1,24 @@
 package pkgs.repositoryJPA;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import pkgs.models.Pessoa;
+import pkgs.repositoryEspec.PessoaRepositoryEspec;
 
-public class PessoaRepositoryJPA implements Serializable {
+public class PessoaRepositoryJPA implements Serializable, PessoaRepositoryEspec {
 
 	private static final long serialVersionUID = 20240221040803L;
 
 	@Inject
-	private EntityManager emP;
-	// @Inject
-	// private EntityManager emS;
+	private EntityManager em;
 
-	/*static {
+	static {
 		System.out.println("PessoaRepositoryJPA.static");
 	}
 
@@ -27,28 +29,32 @@ public class PessoaRepositoryJPA implements Serializable {
 	@PostConstruct
 	public void postConstruct() {
 		System.out.println("PessoaRepositoryJPA.postConstruct()[" + (this) + "]");
-	}*/
-
-	public Pessoa saveA01(Pessoa pessoa) {
-		System.out.println("PessoaRepositoryJPA.saveA01()[" + (this) + "]");
-		System.out.println("     " + "[saveA01][emP][" + (emP.getClass()) + "][" + emP + "][" + emP.getTransaction() + "]");
-		return emP.merge(new Pessoa("[saveA01][emP][" + (emP.getClass()) + "][" + emP + "][" + emP.getTransaction() + "]"));
 	}
 
-	public Pessoa saveA02(Pessoa pessoa) {
-		System.out.println("PessoaRepositoryJPA.saveA02()[" + (this) + "]");
-		System.out.println("     " + "[saveA02][emP][" + (emP.getClass()) + "][" + emP + "][" + emP.getTransaction() + "]");
-		return emP.merge(new Pessoa("[saveA02][emP][" + (emP.getClass()) + "][" + emP + "][" + emP.getTransaction() + "]"));
-		// throw new RuntimeException("TesteMM...");
+	@Override
+	public Pessoa get(Integer idPessoa) {
+		System.out.println("PessoaRepositoryJPA.get()[" + (this) + "]");
+		return em.find(Pessoa.class, idPessoa);
 	}
 
-	public Pessoa saveA03(Pessoa pessoa) {
-		System.out.println("PessoaRepositoryJPA.saveA03()[" + (this) + "]");
-		System.out.println("     " + "[saveA03][emP][" + (emP.getClass()) + "][" + emP + "][" + emP.getTransaction() + "]");
-		return emP.merge(new Pessoa("[saveA03][emP][" + (emP.getClass()) + "][" + emP + "][" + emP.getTransaction() + "]"));
+	@Override
+	public List<Pessoa> list() {
+		System.out.println("PessoaRepositoryJPA.list()[" + (this) + "]");
+		return em.createQuery("from Pessoa", Pessoa.class).getResultList();
 	}
 
-	/*@PreDestroy
+	public Pessoa save(Pessoa pessoa) {
+		System.out.println("PessoaRepositoryJPA.save()[" + (this) + "]");
+		return em.merge(pessoa);
+	}
+
+	@Override
+	public void delete(Pessoa pessoa) {
+		System.out.println("PessoaRepositoryJPA.delete()[" + (this) + "]");
+		em.remove(pessoa);
+	}
+
+	@PreDestroy
 	public void preDestroy() {
 		System.out.println("PessoaRepositoryJPA.preDestroy()[" + (this) + "]");
 	}
@@ -58,6 +64,6 @@ public class PessoaRepositoryJPA implements Serializable {
 	protected void finalize() throws Throwable {
 		System.out.println("PessoaRepositoryJPA.finalize()[" + (this) + "]");
 		super.finalize();
-	}*/
+	}
 
 }

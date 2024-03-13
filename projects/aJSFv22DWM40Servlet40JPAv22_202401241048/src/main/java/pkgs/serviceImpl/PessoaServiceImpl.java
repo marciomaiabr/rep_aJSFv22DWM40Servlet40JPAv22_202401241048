@@ -1,13 +1,18 @@
 package pkgs.serviceImpl;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 
 import pkgs.models.Pessoa;
+import pkgs.qualifiers.MyTransactional;
 import pkgs.repositoryJPA.PessoaRepositoryJPA;
 import pkgs.serviceEspec.PessoaServiceEspec;
 
+@MyTransactional
 public class PessoaServiceImpl implements Serializable, PessoaServiceEspec {
 
 	private static final long serialVersionUID = 20240221040802L;
@@ -15,7 +20,7 @@ public class PessoaServiceImpl implements Serializable, PessoaServiceEspec {
 	@Inject
 	private PessoaRepositoryJPA pr;
 
-	/*static {
+	static {
 		System.out.println("PessoaServiceImpl.static");
 	}
 
@@ -26,26 +31,32 @@ public class PessoaServiceImpl implements Serializable, PessoaServiceEspec {
 	@PostConstruct
 	public void postConstruct() {
 		System.out.println("PessoaServiceImpl.postConstruct()[" + (this) + "]");
-	}*/
+	}
+
+	@Override
+	public Pessoa buscar(Integer idPessoa) {
+		System.out.println("PessoaServiceImpl.buscar()[" + (this) + "]");
+		return pr.get(idPessoa);
+	}
+
+	@Override
+	public List<Pessoa> listar() {
+		System.out.println("PessoaServiceImpl.listar()[" + (this) + "]");
+		return pr.list();
+	}
 
 	public Pessoa salvar(Pessoa pessoa) {
 		System.out.println("PessoaServiceImpl.salvar()[" + (this) + "]");
-
-		pr.saveA01(pessoa);
-		pr.saveA02(pessoa);
-		pr.saveA03(pessoa);
-
-		// pr.save0201(pessoa);
-		// pr.save0202(pessoa);
-		// pr.save0203(pessoa);
-
-		// System.out.println("     " + "[pessoaRetornoSave][" + pessoaRetornoSave + "]");
-		// System.out.println("     " + "[pessoaRetornoSave02][" + pessoaRetornoSave02 + "]");
-
-		return null;
+		return pr.save(pessoa);
 	}
 
-	/*@PreDestroy
+	@Override
+	public void apagar(Pessoa pessoa) {
+		System.out.println("PessoaServiceImpl.apagar()[" + (this) + "]");
+		pr.delete(pessoa);
+	}
+
+	@PreDestroy
 	public void preDestroy() {
 		System.out.println("PessoaServiceImpl.preDestroy()[" + (this) + "]");
 	}
@@ -55,6 +66,6 @@ public class PessoaServiceImpl implements Serializable, PessoaServiceEspec {
 	protected void finalize() throws Throwable {
 		System.out.println("PessoaServiceImpl.finalize()[" + (this) + "]");
 		super.finalize();
-	}*/
+	}
 
 }
