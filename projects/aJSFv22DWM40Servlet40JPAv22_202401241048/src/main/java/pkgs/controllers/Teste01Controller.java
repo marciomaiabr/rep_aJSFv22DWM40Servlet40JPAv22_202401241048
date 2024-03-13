@@ -1,11 +1,14 @@
 package pkgs.controllers;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Named;
+
+import pkgs.models.Pessoa;
+import pkgs.serviceEspec.PessoaServiceEspec;
+import pkgs.utils.CDIServiceLocator;
 
 @Named
 // @javax.enterprise.context.RequestScoped
@@ -31,6 +34,12 @@ public class Teste01Controller implements Serializable {
 
 	public long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public void method01() {
+		System.out.println("Teste01Controller.method01()[" + (this) + "]");
+		PessoaServiceEspec ps = CDIServiceLocator.getBean(PessoaServiceEspec.class);
+		ps.salvar(new Pessoa("Fulano " + java.time.LocalDateTime.now()));
 	}
 
 	@PreDestroy
