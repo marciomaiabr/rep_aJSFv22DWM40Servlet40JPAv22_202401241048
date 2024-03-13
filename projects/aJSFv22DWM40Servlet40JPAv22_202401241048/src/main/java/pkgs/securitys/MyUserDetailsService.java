@@ -34,7 +34,7 @@ public class MyUserDetailsService implements Serializable , UserDetailsService {
 	private Collection<? extends GrantedAuthority> getAuthorities(Usuario usuario) {
 		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		usuario.getGruposUsuario().forEach(
-				gu -> authorities.add(new SimpleGrantedAuthority(gu.getNome().toUpperCase()))
+				gu -> authorities.add(new SimpleGrantedAuthority("ROLE_" + gu.getNome().toUpperCase()))
 			);
 		return authorities;
 	}

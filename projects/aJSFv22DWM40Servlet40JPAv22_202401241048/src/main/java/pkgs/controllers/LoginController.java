@@ -57,7 +57,7 @@ public class LoginController implements Serializable {
 		HttpServletRequest request = JSFUtil.getRequest();
 		HttpServletResponse response = JSFUtil.getResponse();
 		FacesContext facesContext = JSFUtil.getFacesContext();
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/j_spring_security_check");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Logar.xhtml");
 		requestDispatcher.forward(request, response);
 		facesContext.responseComplete();
 	}
