@@ -14,7 +14,7 @@ import javax.inject.Named;
 //@javax.enterprise.context.ApplicationScoped
 public class Teste01Controller implements Serializable {
 
-	private static final long serialVersionUID = 20240221040801L;
+	private static final long serialVersionUID = 20240313042500L;
 
 	static {
 		System.out.println("Teste01Controller.static");
@@ -29,26 +29,8 @@ public class Teste01Controller implements Serializable {
 		System.out.println("Teste01Controller.postConstruct()[" + (this) + "]");
 	}
 
-	public LocalDateTime getAtualLocalDateTime() {
-		return LocalDateTime.now();
-	}
-
-	public String goLogadoOff01() {
-		return "LogadoOff01";
-	}
-
-	public String goLogadoOff02() {
-		return "LogadoOff02?faces-redirect=true";
-	}
-
-	public String goLogadoOn01() {
-		//qdo não usa "faces-redirect=true" ele redireciona para o xhtml e não dá erro de acesso
-		//só dá o erro qdo exeuta alguma ação na página
-		return "LogadoOn01";
-	}
-
-	public String goLogadoOn02() {
-		return "LogadoOn02";
+	public long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@PreDestroy
