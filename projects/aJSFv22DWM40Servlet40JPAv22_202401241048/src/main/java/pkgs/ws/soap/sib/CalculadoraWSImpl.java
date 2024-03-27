@@ -19,3 +19,7 @@ public class CalculadoraWSImpl implements CalculadoraWSSpec {
 	}
 
 }
+
+/*
+http://localhost:8080/aJSFv22DWM40Servlet40JPAv22_202401241048/CalculadoraWSImpl?wsdl
+*/
