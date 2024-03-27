@@ -6,7 +6,7 @@
     version="2.2">
 
 	<lifecycle>
-		<phase-listener>pkgs.phaseListeners.PhaseListener01</phase-listener>
+
 	</lifecycle>
 
 </faces-config>
